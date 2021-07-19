@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Card matching game based on social media icons">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Matching Game</title>
+</head>
+
+<body>
+    <h1 class="heading">Match The Icons</h1>
+
+    <!-- Button for more information how the game works-->
+    <div class="more-info">info icon</div>
+
+    <!--Section for player to choose difficulty of game -->
+    <div class="difficulty-container">
+        <button id="easy">Easy</button>
+        <button id="medium">Medium</button>
+        <button id="hard">Hard</button>
+    </div>
+
+    <!--Game container -->
+    <div class="game-container">
+        <div class="game-info-container">
+            <p> Time: <span id="time-pass">0</span>sec</p>
+            <p> Moves: <span id="moves">0</span></p>
+        </div>
+        <div class="card-container visible">
+            cards
+        </div>
+        <div class="game-options">
+            <button id="start">Start Game</button>
+            <button id="restart">Restart Game</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="assets/js/script.js"></script>
+</body>
+
+</html>
