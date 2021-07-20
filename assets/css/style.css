@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Gloria Hallelujah', cursive, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: radial-gradient(#B0EEEC, #99B8E6);
+}
+
+/* ------------------------------ Game title --------------------------*/
+.game-title {
+    color: #1F1E1E;
+    text-align: center;
+    font-size: 5em;
+}
+
+/*--------------------------------------Game container ----------------------*/
+
+.game-container{
+    width: 750px;
+    margin: auto;
+}
+
+.game-info-container {
+    color: #333131;
+    font-size: 3em;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*--------------------------------------Card container--------------------------------------*/
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/*-------------------------------------- All cards styling goes here ----------------------------------*/
+
+.card {
+    width: 140px;
+    height: 190px;
+    margin: 5px;
+}
+
+.card.back-face {
+    background-image: url("../images/cardback.jpg");
+    background-size: cover;
+    border-radius: 10px;
+    border: 1px solid black;
+}
