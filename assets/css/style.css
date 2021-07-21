@@ -11,6 +11,15 @@ body {
     height: 100vh;
     background: radial-gradient(#B0EEEC, #99B8E6);
 }
+ /*------------------------------------------More-information/icon ----------------*/
+
+ .more-info {
+     position: fixed;
+     top: 25px;
+     right: 25px;
+     width: 50px;
+     height: 50px;
+ }
 
 /* ------------------------------ Game title --------------------------*/
 .game-title {
@@ -21,10 +30,10 @@ body {
 
 /*--------------------------------------Game container ----------------------*/
 
-.game-container{
+/* .game-container{
     width: 750px;
     margin: auto;
-}
+} */
 
 .game-info-container {
     color: #333131;
@@ -35,6 +44,9 @@ body {
 
 /*--------------------------------------Card container--------------------------------------*/
 .card-container {
+    width: 750px;
+    max-height: 400px;
+    margin: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

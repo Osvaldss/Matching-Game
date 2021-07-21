@@ -7,11 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Matching Game</title>
 </head>
 
 <body>
-    <h1 class="heading">Match The Icons</h1>
+    <h1 class="game-title">Match The Icons</h1>
 
     <!-- Button for more information how the game works-->
     <div class="more-info">info icon</div>
@@ -24,19 +25,20 @@
     </div>
 
     <!--Game container -->
-    <div class="game-container">
+    <section class="game-container">
         <div class="game-info-container">
             <p> Time: <span id="time-pass">0</span>sec</p>
             <p> Moves: <span id="moves">0</span></p>
         </div>
-        <div class="card-container visible">
-            cards
-        </div>
+
+    <!--Container keeps all the cards-->
+        <div class="card-container"></div>
+
         <div class="game-options">
             <button id="start">Start Game</button>
             <button id="restart">Restart Game</button>
         </div>
-    </div>
+    </section>
 
     <script type="text/javascript" src="assets/js/script.js"></script>
 </body>
