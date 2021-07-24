@@ -27,4 +27,26 @@ console.log(images);
 // stackowerflow creating image array
 
 
+//---------------------- when easy button clicked create easy game mode with 10 cards and 5 icon pairs from images array
+$('#easy').click(function() {
+    let cardNumber = 10;
+    $('.card-container').css({
+        'width' : '750px',
+        'max-height' : '400px'
+    });
+    $('.card-container').empty();
+
+    for (let i = 0; i < cardNumber; i++) {
+        $('.card-container').append('<div class="card"></div>');
+    };
+    $('.card').append('<div class="card-back"></div>').append('<div class="card-front"></div>');
+    
+    let allFrontCards = $('.card-front');
+    console.log(allFrontCards);
+    for (let j = 0; j < images.length; j++) {
+        allFrontCards.slice( j * 2, j * 2 + 2).append(images[j]);
+    };
+});
+
+
 
