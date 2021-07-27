@@ -27,7 +27,7 @@ console.log(images);
 // stackowerflow creating image array
 
 
-//---------------------- when easy button clicked create easy game mode with 10 cards and 5 icon pairs from images array
+//---------------------- when easy button clicked create easy difficulty game mode with 10 cards and 5 icon pairs from images array
 $('#easy').click(function() {
     let cardNumber = 10;
     $('.card-container').css({
@@ -48,5 +48,45 @@ $('#easy').click(function() {
     };
 });
 
+//---------------------- when medium button clicked create medium difficulty game mode with 14 cards and 7 icon pairs from images array
+$('#medium').click(function() {
+    let cardNumber = 14;
+    $('.card-container').css({
+        'width' : '1050px',
+        'max-height' : '400px'
+    });
+    $('.card-container').empty();
 
+    for (let i = 0; i < cardNumber; i++) {
+        $('.card-container').append('<div class="card"></div>');
+    };
+    $('.card').append('<div class="card-back"></div>').append('<div class="card-front"></div>');
+
+    let allFrontCards = $('.card-front');
+    console.log(allFrontCards);
+    for (let j = 0; j < images.length; j++) {
+        allFrontCards.slice( j * 2, j * 2 + 2).append(images[j]);
+    };
+});
+
+//---------------------- when hard button clicked create hard difficulty game mode with 18 cards and 9 icon pairs from images array
+$('#hard').click(function() {
+    let cardNumber = 18;
+    $('.card-container').css({
+        'width' : '900px',
+        'max-height' : '600px'
+    });
+    $('.card-container').empty();
+
+    for (let i = 0; i < cardNumber; i++) {
+        $('.card-container').append('<div class="card"></div>');
+    };
+    $('.card').append('<div class="card-back"></div>').append('<div class="card-front"></div>');
+
+    let allFrontCards = $('.card-front');
+    console.log(allFrontCards);
+    for (let j = 0; j < images.length; j++) {
+        allFrontCards.slice( j * 2, j * 2 + 2).append(images[j]);
+    };
+});
 
