@@ -8,18 +8,18 @@
 }
 
 body {
-    height: 100vh;
     background: radial-gradient(#B0EEEC, #99B8E6);
 }
- /*------------------------------------------More-information/icon ----------------*/
 
- .more-info {
-     position: fixed;
-     top: 25px;
-     right: 25px;
-     width: 50px;
-     height: 50px;
- }
+/*------------------------------------------More-information/icon ----------------*/
+
+.more-info {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+}
 
 /* ------------------------------ Game title --------------------------*/
 .game-title {
@@ -28,12 +28,7 @@ body {
     font-size: 5em;
 }
 
-/*--------------------------------------Game container ----------------------*/
-
-/* .game-container{
-    width: 750px;
-    margin: auto;
-} */
+/*--------------------------------------Game infor container ----------------------*/
 
 .game-info-container {
     color: #333131;
@@ -44,12 +39,8 @@ body {
 
 /*--------------------------------------Card container--------------------------------------*/
 .card-container {
-    width: 750px;
-    max-height: 400px;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(8, auto);
     justify-content: center;
     perspective: 500px;
 }
@@ -77,6 +68,7 @@ body {
         background-color: rgba(0, 0, 0, 0);
         font-size: 0;
     }
+
     to {
         background-color: rgba(0, 0, 0, 0.8);
         font-size: 5em;
@@ -134,4 +126,183 @@ body {
 .icon {
     width: 135px;
     height: 145px;
+}
+
+
+/*---------------------------Media queries------------------------------*/
+@media screen and (max-width: 688px) and (orientation: landscape) {
+    .card-container {
+        width: 100%;
+        grid-template-columns: repeat(6, auto);
+    }
+
+    .game-title {
+        font-size: 2em;
+    }
+
+    .more-info {
+        top: 5px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .game-info-container {
+        font-size: 1em;
+        display: flex;
+        justify-content: center;
+    }
+
+    .game-info-container p {
+        padding: 0 10px 0;
+    }
+
+    .card {
+        width: 70px;
+        height: 90px;
+        margin: 2px;
+    }
+
+    .card-back:hover{
+        width: 75px;
+        height: 95px;
+    }
+
+    .icon {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 688px) and (orientation: portrait) {
+    .card-container {
+        width: 100%;
+        grid-template-columns: repeat(4, auto);
+    }
+
+    .game-title {
+        font-size: 2em;
+    }
+
+    .more-info {
+        top: 5px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .game-info-container {
+        font-size: 1em;
+        display: flex;
+        justify-content: center;
+    }
+
+    .game-info-container p {
+        padding: 0 10px 0;
+    }
+
+    .card {
+        width: 70px;
+        height: 90px;
+        margin: 2px;
+    }
+
+    .card-back:hover {
+        width: 75px;
+        height: 95px;
+    }
+
+    .icon {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media screen and (min-width: 689px) and (max-width: 992px) and (orientation: landscape) {
+
+    .card-container {
+        width: 100%;
+        grid-template-columns: repeat(6, auto);
+    }
+
+    .game-title {
+        font-size: 2em;
+    }
+
+    .more-info {
+        top: 5px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .game-info-container {
+        font-size: 1em;
+        display: flex;
+        justify-content: center;
+    }
+
+    .game-info-container p {
+        padding: 0 10px 0;
+    }
+
+    .card {
+        width: 100px;
+        height: 150px;
+        margin: 3px;
+    }
+
+    .card-back:hover {
+        width: 95px;
+        height: 110px;
+    }
+
+    .icon {
+        width: 60px;
+        height: 60px;
+    }
+}
+@media screen and (min-width: 689px) and (max-width: 992px) and (orientation: portrait) {
+
+    .card-container {
+        width: 100%;
+        grid-template-columns: repeat(6, auto);
+    }
+
+    .game-title {
+        font-size: 2em;
+    }
+
+    .more-info {
+        top: 5px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .game-info-container {
+        font-size: 1em;
+        display: flex;
+        justify-content: center;
+    }
+
+    .game-info-container p {
+        padding: 0 10px 0;
+    }
+
+    .card {
+        width: 100px;
+        height: 150px;
+        margin: 3px;
+    }
+
+    .card-back:hover {
+        width: 95px;
+        height: 110px;
+    }
+
+    .icon {
+        width: 60px;
+        height: 60px;
+    }
 }
