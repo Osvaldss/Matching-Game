@@ -17,28 +17,31 @@
     <!-- Button for more information how the game works-->
     <div class="more-info">info icon</div>
 
-    <!--Section for player to choose difficulty of game -->
-    <div class="difficulty-container">
-        <button id="easy">Easy</button>
-        <button id="medium">Medium</button>
-        <button id="hard">Hard</button>
-    </div>
 
     <!--Game container -->
     <section class="game-container">
         <div class="game-info-container">
-            <p> Time: <span id="time-pass">0</span>sec</p>
+        <p> Time: <span id="time-pass">0</span>sec</p>
             <p> Moves: <span id="moves">0</span></p>
         </div>
-
         <!--Container keeps all the cards-->
         <div class="card-container">
+            <div class='laoder-container'>
+                <h2>Please Choose Difficulty</h2>
+                <!--Section for player to choose difficulty of game -->
+                <div class="difficulty-container">
+                    <button id="easy">Easy</button>
+                    <button id="medium">Medium</button>
+                    <button id="hard">Hard</button>
+                </div>
+                <img src="assets/images/loader.gif" width="150px" height="150px" alt="loading" />
+            </div>
             <!-- <div class="start-game-screen visible">
                 <span>Click to Start</span>
             </div> -->
         </div>
         <div class="game-options">
-            <button id="start">Start Game</button>
+            <button id="choose-difficulty">Choose difficulty</button>
             <button id="restart">Restart Game</button>
         </div>
     </section>
