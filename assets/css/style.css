@@ -29,13 +29,18 @@ body {
 }
 
 /*--------------------------------------Game infor container ----------------------*/
-
 .game-info-container {
     color: #333131;
-    font-size: 3em;
+    font-size: 2em;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    margin-bottom: 25px;
 }
+
+.game-info-container p {
+    margin: 0 25px 0;
+}
+
 
 /*--------------------------------------Card container--------------------------------------*/
 .card-container {
@@ -43,6 +48,27 @@ body {
     grid-template-columns: repeat(8, auto);
     justify-content: center;
     perspective: 500px;
+}
+
+.laoder-container {
+    margin: 25px auto;
+}
+
+.laoder-container.hidden {
+    display: none;
+}
+
+.laoder-container img {
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.difficulty-container {
+    margin: 5px auto;
+    display: flex;
+    justify-content: center;
 }
 
 .start-game-screen {
@@ -75,6 +101,19 @@ body {
     }
 }
 
+.game-options {
+    color: #333131;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+button {
+    padding: 0 10px 0;
+    margin: 0 5px 0;
+}
+
 /*-------------------------------------- All card styling goes here ----------------------------------*/
 
 .card {
@@ -82,15 +121,17 @@ body {
     height: 190px;
     margin: 5px;
     position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-in-out;
 }
 
-.card:hover .card-back {
-    transform: rotateY(-180deg);
+.card.flip {
+    transform: rotateY(180deg);
 }
 
-.card:hover .card-front {
+/* .card.card-front {
     transform: rotateY(0);
-}
+} */
 
 .card-back {
     width: 100%;
@@ -133,7 +174,7 @@ body {
 @media screen and (max-width: 688px) and (orientation: landscape) {
     .card-container {
         width: 100%;
-        grid-template-columns: repeat(6, auto);
+        grid-template-columns: repeat(8, auto);
     }
 
     .game-title {
@@ -218,7 +259,7 @@ body {
     }
 }
 
-@media screen and (min-width: 689px) and (max-width: 992px) and (orientation: landscape) {
+@media screen and (min-width: 689px) and (max-width: 1200px) and (orientation: landscape) {
 
     .card-container {
         width: 100%;
@@ -262,7 +303,7 @@ body {
         height: 60px;
     }
 }
-@media screen and (min-width: 689px) and (max-width: 992px) and (orientation: portrait) {
+@media screen and (min-width: 689px) and (max-width: 1200px) and (orientation: portrait) {
 
     .card-container {
         width: 100%;
