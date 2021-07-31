@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    $(".card-container").append('<h2>Please Choose Difficulty</h2><img src="assets/images/loader.gif" width="250px" height="250px" alt="loading"/>')
 
 });
 
@@ -23,39 +22,58 @@ images.push(createImage('assets/images/soundcloud.png', 'icon', 'Icon of Soundcl
 images.push(createImage('assets/images/twitter.png', 'icon', 'Icon of Twitter'));
 images.push(createImage('assets/images/yahoo.png', 'icon', 'Icon of Yahoo'));
 images.push(createImage('assets/images/youtube.png', 'icon', 'Icon of Youtube'));
+images.push(createImage('assets/images/rss.png', 'icon', 'Icon of RSS Feed'));
+images.push(createImage('assets/images/blogger.png', 'icon', 'Icon of Blogger'));
 console.log(images);
 // stackowerflow creating image array
 
-
-//---------------------- when easy button clicked create easy difficulty game mode with 10 cards and 5 icon pairs from images array
+//---------------------- when easy button clicked create easy difficulty game mode with 8 cards and 4 icon pairs from images array
 $('#easy').click(function() {
-    let cardNumber = 10;
-    $('.card-container').css({
-        'width' : '750px',
-        'max-height' : '400px'
-    });
-    $('.card-container').empty();
+    let cardNumber = 8;
+    let hasCardFlipped = false;
+    let firstCard, secondCard;
 
+    $('.card-container').children('.card').remove();
+    $('.card-container').first().children('div').addClass('hidden');
+    //--------------------------- creates cards -------------------------//
     for (let i = 0; i < cardNumber; i++) {
         $('.card-container').append('<div class="card"></div>');
     };
     $('.card').append('<div class="card-back"></div>').append('<div class="card-front"></div>');
-    
+    //---------------------------------------------add images to each card----------------------------------//
     let allFrontCards = $('.card-front');
-    console.log(allFrontCards);
     for (let j = 0; j < images.length; j++) {
         allFrontCards.slice( j * 2, j * 2 + 2).append(images[j]);
     };
+
+    let cards = $('.card');
+    for( let i = cards.length - 1; i > 0; i--) {
+        let randomIndex = Math.floor(Math.random() * (i + 1));
+        cards[randomIndex].style.order = i;
+        cards[i].style.order = randomIndex;
+    }
+
+    //------------------------------------flip clicked cards-------------------------------------------------//
+    $('.card').click(function(e){
+        $(this).toggleClass('flip');
+
+        // if(!hasCardFlipped) {
+        //     hasCardFlipped = true;
+        //     firstCard = this;
+        // } else {
+        //     hasCardFlipped = false;
+        //     secondCard = this;
+        // }
+
+        
+    });
 });
 
-//---------------------- when medium button clicked create medium difficulty game mode with 14 cards and 7 icon pairs from images array
+//---------------------- when medium button clicked create medium difficulty game mode with 16 cards and 9 icon pairs from images array
 $('#medium').click(function() {
-    let cardNumber = 14;
-    $('.card-container').css({
-        'width' : '1050px',
-        'max-height' : '400px'
-    });
-    $('.card-container').empty();
+    let cardNumber = 16;
+    $('.card-container').children('.card').remove();
+    $('.card-container').first().children('div').addClass('hidden');
 
     for (let i = 0; i < cardNumber; i++) {
         $('.card-container').append('<div class="card"></div>');
@@ -69,14 +87,11 @@ $('#medium').click(function() {
     };
 });
 
-//---------------------- when hard button clicked create hard difficulty game mode with 18 cards and 9 icon pairs from images array
+//---------------------- when hard button clicked create hard difficulty game mode with 24 cards and 12 icon pairs from images array
 $('#hard').click(function() {
-    let cardNumber = 18;
-    $('.card-container').css({
-        'width' : '900px',
-        'max-height' : '600px'
-    });
-    $('.card-container').empty();
+    let cardNumber = 24;
+    $('.card-container').children('.card').remove();
+    $('.card-container').first().children('div').addClass('hidden');
 
     for (let i = 0; i < cardNumber; i++) {
         $('.card-container').append('<div class="card"></div>');
@@ -90,3 +105,8 @@ $('#hard').click(function() {
     };
 });
 
+$('#choose-difficulty').click(function(){
+    $('.card-container').children('.card').remove();
+    $('.card-container').first().children('div').removeClass('hidden');
+
+});
