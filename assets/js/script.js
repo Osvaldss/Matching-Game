@@ -30,7 +30,8 @@ console.log(images);
 //---------------------- when easy button clicked create easy difficulty game mode with 8 cards and 4 icon pairs from images array
 $('#easy').click(function() {
     let cardNumber = 8;
-
+    let moves = 0;
+    $('#moves').text(moves);
     $('.card-container').children('.card').remove();
     $('.card-container').first().children('div').addClass('hidden');
     //--------------------------- creates cards -------------------------//
@@ -44,7 +45,7 @@ $('#easy').click(function() {
         allFrontCards.slice( j * 2, j * 2 + 2).append(images[j]);
     };
 
-    //--------------------------------------- shuffle cards --------------------------------------------//
+    //--------------------------------------- shuffle cards Fisher–Yates shuffle wikipedia --------------------------------------------//
     let cards = $('.card');
     for( let i = cards.length - 1; i > 0; i--) {
         let randomIndex = Math.floor(Math.random() * (i + 1));
@@ -52,9 +53,30 @@ $('#easy').click(function() {
         cards[i].style.order = randomIndex;
     }
 
+    //------------------------------------- time interval ---------------------------------------//
+    var seconds = 1;
+    $('#restart').click(function(){
+        setInterval(function () {
+            $('#time-pass').text(seconds);
+            seconds++;
+        }, 1000);
+    });
+
     //------------------------------------flip clicked cards-------------------------------------------------//
-    $('.card').click(function(e){
+    $('.card').click(function(){
+        //--- allow to lfip only two cards at a time
+        if($('.selected').length >= 2){
+            return;
+        } else {
+        // count moves
+        if(!$(this).hasClass('selected')){
+            moves++;
+        };
+        $('#moves').text(moves);
+
+        // add selected class
         $(this).addClass('selected flip');
+
         if ($('.selected').length === 2){
             if($('.selected').first().find('img').attr('src') == $('.selected').last().find('img').attr('src')){
                 $('.selected').each(function() {
@@ -66,13 +88,11 @@ $('#easy').click(function() {
                 setTimeout (function() {
                     $('.selected').each(function() {
                         $(this).removeClass('selected flip');
-                    })  
-            }, 1000);
-            };
-    
-           
-        }
-
+                    }); 
+                }, 1000);
+            };  
+        };
+    };
     });
 });
 
@@ -118,3 +138,5 @@ $('#choose-difficulty').click(function(){
     $('.card-container').first().children('div').removeClass('hidden');
 
 });
+
+
