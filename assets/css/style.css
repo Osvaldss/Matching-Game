@@ -124,7 +124,7 @@ button {
     transform-style: preserve-3d;
     transition: transform 0.5s ease-in-out;
     border-radius: 10px;
-    box-shadow: 10px 10px 10px rgb(78, 78, 78);
+    /* box-shadow: 10px 10px 10px rgb(78, 78, 78); */
 }
 
 .card:hover {
@@ -300,8 +300,8 @@ button {
     }
 
     .card-back:hover {
-        width: 95px;
-        height: 110px;
+        width: 105px;
+        height: 155px;
     }
 
     .icon {
@@ -344,8 +344,8 @@ button {
     }
 
     .card-back:hover {
-        width: 95px;
-        height: 110px;
+        width: 105px;
+        height: 155px;
     }
 
     .icon {
