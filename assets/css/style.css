@@ -123,6 +123,12 @@ button {
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.5s ease-in-out;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgb(78, 78, 78);
+}
+
+.card:hover {
+    cursor: pointer;
 }
 
 .card.flip {

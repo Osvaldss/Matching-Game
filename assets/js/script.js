@@ -30,8 +30,6 @@ console.log(images);
 //---------------------- when easy button clicked create easy difficulty game mode with 8 cards and 4 icon pairs from images array
 $('#easy').click(function() {
     let cardNumber = 8;
-    let hasCardFlipped = false;
-    let firstCard, secondCard;
 
     $('.card-container').children('.card').remove();
     $('.card-container').first().children('div').addClass('hidden');
@@ -46,6 +44,7 @@ $('#easy').click(function() {
         allFrontCards.slice( j * 2, j * 2 + 2).append(images[j]);
     };
 
+    //--------------------------------------- shuffle cards --------------------------------------------//
     let cards = $('.card');
     for( let i = cards.length - 1; i > 0; i--) {
         let randomIndex = Math.floor(Math.random() * (i + 1));
@@ -55,19 +54,28 @@ $('#easy').click(function() {
 
     //------------------------------------flip clicked cards-------------------------------------------------//
     $('.card').click(function(e){
-        $(this).toggleClass('flip');
+        $(this).addClass('selected flip');
+        if ($('.selected').length === 2){
+            if($('.selected').first().find('img').attr('src') == $('.selected').last().find('img').attr('src')){
+                $('.selected').each(function() {
+                    $(this).removeClass('selected').unbind('click');
+                });
+                // remove click eventhandler / play match music
+            } else { 
+                console.log('not matched');
+                setTimeout (function() {
+                    $('.selected').each(function() {
+                        $(this).removeClass('selected flip');
+                    })  
+            }, 1000);
+            };
+    
+           
+        }
 
-        // if(!hasCardFlipped) {
-        //     hasCardFlipped = true;
-        //     firstCard = this;
-        // } else {
-        //     hasCardFlipped = false;
-        //     secondCard = this;
-        // }
-
-        
     });
 });
+
 
 //---------------------- when medium button clicked create medium difficulty game mode with 16 cards and 9 icon pairs from images array
 $('#medium').click(function() {
