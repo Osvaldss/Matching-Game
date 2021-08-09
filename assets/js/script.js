@@ -1,55 +1,57 @@
 $(document).ready(function () {
+    //---------------------- when easy button clicked create easy difficulty game mode with 8 cards and 4 icon pairs from images array
+    $('#easy').click(function () {
+        $('.card-container').children('.card').remove();
+        $('.card-container').find('#loader').addClass('hidden');
+        gameScreen();
+        createCards(8);
+        addImagesToCards();
+        shuffleCards();
+        flipCards();
+    });
 
+    //---------------------- when medium button clicked create medium difficulty game mode with 16 cards and 9 icon pairs from images array
+    $('#medium').click(function () {
+        $('.card-container').children('.card').remove();
+        $('.card-container').find('#loader').addClass('hidden');
+        gameScreen();
+        createCards(16);
+        addImagesToCards();
+        shuffleCards();
+        flipCards();
+    });
+
+
+    //---------------------- when hard button clicked create hard difficulty game mode with 24 cards and 12 icon pairs from images array
+    $('#hard').click(function () {
+        $('.card-container').children('.card').remove();
+        $('.card-container').find('#loader').addClass('hidden');
+        gameScreen();
+        createCards(24);
+        addImagesToCards();
+        shuffleCards();
+        flipCards();
+    });
+
+    //----------------------------------------Choose difficulty button
+    $('#choose-difficulty').click(function () {
+        $('.start-game-screen').fadeOut('fast');
+        $('.card-container').children('.card').remove();
+        $('.card-container').first().children('div').removeClass('hidden');
+        clearInterval(timer);
+        seconds = 0;
+        $('#time-pass').text(seconds);
+        moves = 0;
+        $('#moves').text(moves);
+    });
 });
 
-var matchedCards = [];
-//---------------------- when easy button clicked create easy difficulty game mode with 8 cards and 4 icon pairs from images array
-$('#easy').click(function () {
-
-    $('.card-container').children('.card').remove();
-    $('.card-container').find('#loader').addClass('hidden');
-    gameScreen();
-    createCards(8);
-    addImagesToCards();
-    shuffleCards();
-    flipCards();
-});
-
-
-//---------------------- when medium button clicked create medium difficulty game mode with 16 cards and 9 icon pairs from images array
-$('#medium').click(function () {
-    $('.card-container').children('.card').remove();
-    $('.card-container').find('#loader').addClass('hidden');
-    gameScreen();
-    createCards(16);
-    addImagesToCards();
-    shuffleCards();
-    flipCards();
-});
-
-
-//---------------------- when hard button clicked create hard difficulty game mode with 24 cards and 12 icon pairs from images array
-$('#hard').click(function () {
-    $('.card-container').children('.card').remove();
-    $('.card-container').find('#loader').addClass('hidden');
-    gameScreen();
-    createCards(24);
-    addImagesToCards();
-    shuffleCards();
-    flipCards();
-});
-
-//----------------------------------------Choose difficulty button
-$('#choose-difficulty').click(function () {
-    $('.start-game-screen').fadeOut('fast');
-    $('.card-container').children('.card').remove();
-    $('.card-container').first().children('div').removeClass('hidden');
-    clearInterval(timer);
-    seconds = 0;
-    $('#time-pass').text(seconds);
-    let moves = 0;
-    $('#moves').text(moves);
-});
+var victorySound = document.createElement('audio');
+victorySound.src = 'assets/sounds/victory.wav';
+victorySound.volume = 0.5;
+victorySound.autoPlay = false;
+victorySound.preLoad = true;
+victorySound.controls = true;
 
 // stackowerflow creating image array
 var createImage = function (src, nameOfClass, title) {
@@ -124,7 +126,8 @@ function checkForWin() {
         clearInterval(timer);
         setTimeout(function () {
             console.log('You won!!');
-        }, 1000);
+            victorySound.play();
+        }, 500);
     }
 };
 
@@ -150,7 +153,7 @@ function flipCards() {
                     $('.selected').each(function () {
                         $(this).removeClass('selected').unbind('click');
                     });
-                   checkForWin();
+                    checkForWin();
                     // play match music
                 } else {
                     console.log('not matched');
