@@ -21,12 +21,12 @@
     <!--Game container -->
     <section class="game-container">
         <div class="game-info-container">
-        <p> Time: <span id="time-pass">0</span>sec</p>
-            <p> Moves: <span id="moves">0</span></p>
+        <p> Time: <span id="time-pass">0</span> sec</p>
+            <p> Moves: <span id="moves">0 </span></p>
         </div>
         <!--Container keeps all the cards-->
         <div class="card-container">
-            <div class='laoder-container'>
+            <div id='loader' class='laoder-container'>
                 <h2>Please Choose Difficulty</h2>
                 <!--Section for player to choose difficulty of game -->
                 <div class="difficulty-container">
@@ -36,9 +36,9 @@
                 </div>
                 <img src="assets/images/loader.gif" width="150px" height="150px" alt="loading" />
             </div>
-            <!-- <div class="start-game-screen visible">
+            <div class="start-game-screen">
                 <span>Click to Start</span>
-            </div> -->
+            </div>
         </div>
         <div class="game-options">
             <button id="choose-difficulty">Choose difficulty</button>
@@ -46,7 +46,7 @@
         </div>
     </section>
 
-    <script type="text/javascript" src="assets/js/script.js"></script>
+    <script type="text/javascript" src="assets/js/script.js" async></script>
 </body>
 
 </html>
