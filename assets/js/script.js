@@ -3,42 +3,34 @@ $(document).ready(function () {
     $('#mute-btn').click(function() {
         controlVolume();     
     });
-    //---------------------- when easy button clicked create easy difficulty game mode with 8 cards and 4 icon pairs from images array
-    $('#easy').click(function () {
+
+    $('.difficulty-btn').click(function(){
+        if($(this).is('#easy')){
+            console.log('easy');
+            cardNumber = 8;
+        } else if($(this).is('#medium')){
+            cardNumber = 16;
+        } else if($(this).is('#hard')){
+            cardNumber = 24;
+        } else {
+            alert('Difficulty was not picked!!!');
+        }
         startTimer();
+        gameScoreConatainer();
         addCardContainer();
-        createCards(8);
+        createCards(cardNumber);
         addImagesToCards();
         shuffleCards();
         flipCards();
     });
 
-    //---------------------- when medium button clicked create medium difficulty game mode with 16 cards and 9 icon pairs from images array
-    $('#medium').click(function () {
-        startTimer();
-        addCardContainer();
-        createCards(16);
-        addImagesToCards();
-        shuffleCards();
-        flipCards();
-    });
-
-
-    //---------------------- when hard button clicked create hard difficulty game mode with 24 cards and 12 icon pairs from images array
-    $('#hard').click(function () {
-        startTimer();
-        addCardContainer();
-        createCards(24);
-        addImagesToCards();
-        shuffleCards();
-        flipCards();
-    });
-
-    //----------------------------------------Choose difficulty button
+    
+    //----------------------------------------Choose difficulty button---------------------//
     $('#choose-difficulty').click(function () {
         $('.victory-screen').fadeOut('fast');
         $('.card-container').children('.card').remove();
         $('.card-container').first().children('div').removeClass('hidden');
+        $('.game-info-container').removeClass('visible');
         clearInterval(timer);
         seconds = 0;
         $('#time-pass').text(seconds);
@@ -47,6 +39,7 @@ $(document).ready(function () {
     });
 });
 
+//---------------------------------------------------- Mute On/Off button control ----------------------------------//
 function controlVolume() {
     if (bgSound.volume === 0) {
        bgSound.play();
@@ -61,8 +54,7 @@ function controlVolume() {
     }
 }
 
-
-
+//---------------------------------------------- Victory sound/ background music ----------------------------//
 var victorySound = document.createElement('audio');
 victorySound.src = 'assets/sounds/victory.wav';
 victorySound.volume = 0.5;
@@ -109,16 +101,16 @@ function gameScreen() {
     });
 };
 
-
 //------------------------------------------- victory screen------------------------------------------//
 function victoryScreen() {
     $('.victory-screen').css('display', 'flex').addClass('visible');
     $('.results').text('You di it in: \n' + $('#time-pass').text() + ' seconds and ' + $('#moves').text() + ' moves');
     $('.victory-screen').click(function () {
         $('.victory-screen').fadeOut('fast').removeClass('visible');
-        bgSound.play();
         $('.card-container').children('.card').remove();
         $('.card-container').first().children('div').removeClass('hidden');
+        $('.game-info-container').removeClass('visible');
+        bgSound.play();
         clearInterval(timer);
         seconds = 0;
         $('#time-pass').text(seconds);
@@ -126,6 +118,11 @@ function victoryScreen() {
         $('#moves').text(moves);
     });
 };
+
+//----------------------------------------------------Add Game score container--------------------------------//
+function gameScoreConatainer() {
+    $('.game-info-container').addClass('visible');
+}
 
 //------------------------------------------------ Add card container-----------------------------------//
 function addCardContainer(){

@@ -49,13 +49,17 @@ body {
 .game-info-container {
     color: #333131;
     font-size: 2em;
-    display: flex;
+    display: none;
     justify-content: center;
     margin-bottom: 25px;
 }
 
 .game-info-container p {
     margin: 0 25px 0;
+}
+
+.game-info-container.visible {
+    display: flex;
 }
 
 
