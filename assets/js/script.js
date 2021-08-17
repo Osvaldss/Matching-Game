@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    hideContent();
     gameScreen();
     $('#mute-btn').click(function() {
         controlVolume();     
@@ -21,13 +22,14 @@ $(document).ready(function () {
         createCards(cardNumber);
         addImagesToCards();
         shuffleCards();
+        $('#choose-difficulty').fadeIn('slow');
         flipCards();
     });
 
     
     //----------------------------------------Choose difficulty button---------------------//
     $('#choose-difficulty').click(function () {
-        $('.victory-screen').fadeOut('fast');
+        $('#choose-difficulty').fadeOut('fast');
         $('.card-container').children('.card').remove();
         $('.card-container').first().children('div').removeClass('hidden');
         $('.game-info-container').removeClass('visible');
@@ -38,6 +40,17 @@ $(document).ready(function () {
         $('#moves').text(moves);
     });
 });
+
+
+//------------------------------------------------------Hide/show content behind game screen-----------------------------//
+
+function hideContent(){
+    $('.game-title, .more-info-container, .game-container').hide();
+}
+
+function showContent(){
+    $('.game-title, .more-info-container, .game-container').fadeIn('medium');
+}
 
 //---------------------------------------------------- Mute On/Off button control ----------------------------------//
 function controlVolume() {
@@ -98,18 +111,21 @@ function gameScreen() {
     $('.game-screen').click(function () {
         $('.game-screen').fadeOut('slow').removeClass('visible');
         bgSound.play();
+        showContent();
+        $('#choose-difficulty').hide();
     });
 };
 
 //------------------------------------------- victory screen------------------------------------------//
 function victoryScreen() {
-    $('.victory-screen').css('display', 'flex').addClass('visible');
-    $('.results').text('You di it in: \n' + $('#time-pass').text() + ' seconds and ' + $('#moves').text() + ' moves');
-    $('.victory-screen').click(function () {
-        $('.victory-screen').fadeOut('fast').removeClass('visible');
+    $('.victory-screen, .victory-overlay-screen').fadeIn('slow').css('display', 'flex').addClass('visible');
+    $('.results').text('You did it in: \n' + $('#time-pass').text() + ' seconds and ' + $('#moves').text() + ' moves');
+    $('.continue-btn').click(function () {
+        $('.victory-screen, .victory-overlay-screen').fadeOut('fast').removeClass('visible');
         $('.card-container').children('.card').remove();
         $('.card-container').first().children('div').removeClass('hidden');
         $('.game-info-container').removeClass('visible');
+        $('#choose-difficulty').hide();
         bgSound.play();
         clearInterval(timer);
         seconds = 0;
@@ -181,6 +197,7 @@ function checkForWin() {
     }
 };
 
+//--------------------------------------------- flip cards back if they not match--------------------------------------//
 function flipCardsBack () {
     setTimeout(function () {
         $('.selected').each(function () {

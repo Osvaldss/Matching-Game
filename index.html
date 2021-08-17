@@ -19,8 +19,8 @@
 
     <!-- Button for more information how the game works-->
     <div class="more-info-container">
-        <button id="info-btn" aria-hidden="more information button"><i class="fas fa-info"></i></button>
-        <button id="mute-btn" aria-hidden="mute on/off button"><i class="fas fa-volume-up"></i></button>
+        <button id="info-btn" aria-label="more information button"><i class="fas fa-info"></i></button>
+        <button id="mute-btn" aria-label="mute on/off button"><i class="fas fa-volume-up"></i></button>
     </div>
     <!--Game container -->
     <section class="game-container">
@@ -32,13 +32,13 @@
         <div class="card-container">
             <div id='loader' class='laoder-container'>
                 <h2>Please Choose Difficulty</h2>
-                <!--Section for player to choose difficulty of game -->
+                <!--Container for player to choose difficulty of game -->
                 <div class="difficulty-container">
-                    <button id="easy" class='difficulty-btn'>Easy</button>
-                    <button id="medium" class='difficulty-btn'>Medium</button>
-                    <button id="hard" class='difficulty-btn'>Hard</button>
+                    <button id="easy" class='difficulty-btn'><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></br>Easy</button>
+                    <button id="medium" class='difficulty-btn'><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></br>Medium</button>
+                    <button id="hard" class='difficulty-btn'><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></br>Hard</button>
                 </div>
-                <img src="assets/images/loader.svg" width="150px" height="150px" alt="loading" />
+                <!-- <img src="assets/images/loader.svg" width="150px" height="150px" alt="loading" /> -->
             </div>
         </div>
         <div class="game-options">
@@ -46,13 +46,17 @@
         </div>
     </section>
     <div class="victory-screen">
-        <h2>You Win!!</h2>
+        <h2>You Win!!!</h2>
+        <p>Your Score: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
         <span class='results'></span>
-        <span>Click to continue</span>
+        <button class='continue-btn'>Click to continue <i class="fas fa-caret-right"></i></button>
     </div>
+    <div class="victory-overlay-screen"></div>
     <div class="game-screen">
         <h2>Match The Icons</h2>
-        <span>Click to Start</span>
+        <div>
+        <span class="click-to-start">Click to Start</span>
+         </div>
     </div>
 
     <script type="text/javascript" src="assets/js/script.js" async></script>

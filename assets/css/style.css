@@ -1,14 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Gloria Hallelujah', cursive, sans-serif;
+    font-family: 'Varela Round', sans-serif
 }
 
 body {
     background: radial-gradient(#B0EEEC, #99B8E6);
+}
+
+button {
+    cursor: pointer;
+    padding: 0 10px 0;
+}
+
+/*-----------------------------------------------Game container---------------------------*/
+
+.game-container{
+    margin: auto;
 }
 
 /*------------------------------------------More-information/icon ----------------*/
@@ -17,6 +29,7 @@ body {
     position: fixed;
     top: 50px;
     right: 25px;
+    z-index: 5;
 
 }
 
@@ -29,12 +42,15 @@ body {
     border: 1px solid #fff;
     width: 45px;
     height: 45px;
+    margin: 0;
 }
 
 #mute-btn:hover,
 #info-btn:hover,
 #mute-btn:focus,
-#info-btn:focus {
+#info-btn:focus,
+.continue-btn:hover,
+.continue-btn:focus {
     background-color: #eeb449;
 }
 
@@ -92,7 +108,25 @@ body {
     justify-content: center;
 }
 
-.victory-screen,
+.difficulty-btn {
+    background-color: #99B8E6;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    width: 125px;
+    height: 125px;
+    margin: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.difficulty-btn:hover,
+.difficulty-btn:focus {
+    background-color: #eeb449;
+}
+
+/*-----------------------------------------------Pop up screens ------------------------------*/
+
 .game-screen {
     display: none;
     position: fixed;
@@ -102,15 +136,89 @@ body {
     bottom: 0;
     justify-content: center;
     align-items: center;
-    z-index: 99;
+    z-index: 6;
     color: #fff;
 }
 
-.victory-screen.visible,
+.victory-screen {
+    display: none;
+    position: fixed;
+    width: 45vw;
+    height: 45vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    z-index: 7;
+    background-color: #99B8E6;
+    color: #fff;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.victory-screen.visible {
+    display: flex;
+    flex-direction: column;
+}
+
+.victory-screen h2 {
+    font-size: 2.5em;
+    padding-top: 0.7em;
+}
+
+.victory-screen p {
+    font-size: 20px;
+}
+
+.victory-overlay-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+}
+
+.victory-overlay-screen.visible {
+    display: flex;
+    animation: screen-grow 500ms forwards;
+}
+
+.continue-btn {
+    padding: 10px;
+    position: fixed;
+    bottom: -10px;
+    right: -10px;
+    background-color: #99B8E6;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 10px;
+    border: 2px solid #fff;
+}
+
 .game-screen.visible {
     display: flex;
     flex-direction: column;
     animation: screen-grow 500ms forwards;
+    cursor: pointer;
+}
+
+.click-to-start {
+    animation: pulsing 4s infinite;
+}
+
+@keyframes pulsing {
+    0% {
+        font-size: 25px;
+    }
+    50% {
+        font-size: 30px;
+    }
+    100% {
+        font-size: 25px; 
+    }
 }
 
 @keyframes screen-grow {
@@ -119,11 +227,12 @@ body {
         font-size: 0;
     }
     to {
-        background-color: rgba(0, 0, 0, 0.95);
+        background-color: rgba(93, 100, 243, 0.95);
         font-size: 5em;
     }
 }
 
+/*------------------------------------Game option container / change difficulty button -----------------------*/
 .game-options {
     color: #333131;
     font-size: 2em;
@@ -132,12 +241,7 @@ body {
     margin-top: 25px;
 }
 
-button {
-    padding: 0 10px 0;
-    margin: 0 5px 0;
-}
-
-/*-------------------------------------- All card styling goes here ----------------------------------*/
+/*-------------------------------------- All card styling----------------------------------*/
 
 .card {
     width: 140px;
@@ -239,7 +343,6 @@ button {
 
     .game-info-container {
         font-size: 1em;
-        display: flex;
         justify-content: center;
     }
 
@@ -296,12 +399,15 @@ button {
 
     .game-info-container {
         font-size: 1em;
-        display: flex;
         justify-content: center;
     }
 
     .game-info-container p {
         padding: 0 10px 0;
+    }
+
+    .difficulty-container {
+        flex-direction: column;
     }
 
     .card {
@@ -341,7 +447,6 @@ button {
 
     .game-info-container {
         font-size: 1em;
-        display: flex;
         justify-content: center;
     }
 
@@ -385,7 +490,6 @@ button {
 
     .game-info-container {
         font-size: 1em;
-        display: flex;
         justify-content: center;
     }
 
