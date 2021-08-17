@@ -115,7 +115,7 @@ body {
         font-size: 0;
     }
     to {
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(0, 0, 0, 0.95);
         font-size: 5em;
     }
 }
@@ -143,7 +143,7 @@ button {
     transform-style: preserve-3d;
     transition: transform 0.5s ease-in-out;
     border-radius: 10px;
-    /* box-shadow: 10px 10px 10px rgb(78, 78, 78); */
+    box-shadow: 10px 10px 10px rgb(78, 78, 78);
 }
 
 .card:hover {
@@ -162,16 +162,20 @@ button {
     width: 100%;
     height: 100%;
     background-image: url("../images/cardback.jpg");
-    background-size: cover;
+    background-size: 100%;
+    background-position: center;
     border-radius: 10px;
     border: 1px solid black;
-    transition: transform 500ms ease-in-out, width 100ms ease-in-out, height 100ms ease-in-out;
+    transition: transform 500ms ease-in-out, background-size 500ms ease-in;
+    -moz-transition: transform 500ms ease-in-out, background-size 500ms ease-in;
+    -ms-transition: transform 500ms ease-in-out, background-size 500ms ease-in;
+    -o-transition: transform 500ms ease-in-out, background-size 500ms ease-in;
+    -webkit-transition: transform 500ms ease-in-out, background-size 500ms ease-in;
     position: absolute;
 }
 
 .card-back:hover {
-    width: 145px;
-    height: 195px;
+    background-size: 120%;
 }
 
 .card-front {
