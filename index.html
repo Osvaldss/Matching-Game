@@ -6,8 +6,11 @@
     <meta name="description" content="Card matching game based on social media icons">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Matching Game</title>
 </head>
 
@@ -15,14 +18,15 @@
     <h1 class="game-title">Match The Icons</h1>
 
     <!-- Button for more information how the game works-->
-    <div class="more-info">info icon</div>
-
-
+    <div class="more-info-container">
+        <button id="info-btn" aria-hidden="more information button"><i class="fas fa-info"></i></button>
+        <button id="mute-btn" aria-hidden="mute on/off button"><i class="fas fa-volume-up"></i></button>
+    </div>
     <!--Game container -->
     <section class="game-container">
         <div class="game-info-container">
-        <p> Time: <span id="time-pass">0</span> sec</p>
-            <p> Moves: <span id="moves">0 </span></p>
+            <p> Time: <span id="time-pass">0</span> sec</p>
+            <p> Moves: <span id="moves">0</span></p>
         </div>
         <!--Container keeps all the cards-->
         <div class="card-container">
@@ -36,15 +40,20 @@
                 </div>
                 <img src="assets/images/loader.gif" width="150px" height="150px" alt="loading" />
             </div>
-            <div class="start-game-screen">
-                <span>Click to Start</span>
-            </div>
         </div>
         <div class="game-options">
-            <button id="choose-difficulty">Choose difficulty</button>
-            <button id="restart">Restart Game</button>
+            <button id="choose-difficulty">Change difficulty</button>
         </div>
     </section>
+    <div class="victory-screen">
+        <h2>You Win!!</h2>
+        <span class='results'></span>
+        <span>Click to continue</span>
+    </div>
+    <div class="game-screen">
+        <h2>Match The Icons</h2>
+        <span>Click to Start</span>
+    </div>
 
     <script type="text/javascript" src="assets/js/script.js" async></script>
 </body>

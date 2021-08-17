@@ -1,9 +1,12 @@
 $(document).ready(function () {
+    gameScreen();
+    $('#mute-btn').click(function() {
+        controlVolume();     
+    });
     //---------------------- when easy button clicked create easy difficulty game mode with 8 cards and 4 icon pairs from images array
     $('#easy').click(function () {
-        $('.card-container').children('.card').remove();
-        $('.card-container').find('#loader').addClass('hidden');
-        gameScreen();
+        startTimer();
+        addCardContainer();
         createCards(8);
         addImagesToCards();
         shuffleCards();
@@ -12,9 +15,8 @@ $(document).ready(function () {
 
     //---------------------- when medium button clicked create medium difficulty game mode with 16 cards and 9 icon pairs from images array
     $('#medium').click(function () {
-        $('.card-container').children('.card').remove();
-        $('.card-container').find('#loader').addClass('hidden');
-        gameScreen();
+        startTimer();
+        addCardContainer();
         createCards(16);
         addImagesToCards();
         shuffleCards();
@@ -24,9 +26,8 @@ $(document).ready(function () {
 
     //---------------------- when hard button clicked create hard difficulty game mode with 24 cards and 12 icon pairs from images array
     $('#hard').click(function () {
-        $('.card-container').children('.card').remove();
-        $('.card-container').find('#loader').addClass('hidden');
-        gameScreen();
+        startTimer();
+        addCardContainer();
         createCards(24);
         addImagesToCards();
         shuffleCards();
@@ -35,7 +36,7 @@ $(document).ready(function () {
 
     //----------------------------------------Choose difficulty button
     $('#choose-difficulty').click(function () {
-        $('.start-game-screen').fadeOut('fast');
+        $('.victory-screen').fadeOut('fast');
         $('.card-container').children('.card').remove();
         $('.card-container').first().children('div').removeClass('hidden');
         clearInterval(timer);
@@ -46,12 +47,36 @@ $(document).ready(function () {
     });
 });
 
+function controlVolume() {
+    if (bgSound.volume === 0) {
+       bgSound.play();
+       victorySound.volume = 0.5;
+       bgSound.volume = 0.5;
+       $('#mute-btn').empty().append('<i class="fas fa-volume-up"></i>');
+    }else{
+        bgSound.pause();
+        victorySound.volume = 0;
+        bgSound.volume = 0;
+        $('#mute-btn').empty().append('<i class="fas fa-volume-mute"></i>');
+    }
+}
+
+
+
 var victorySound = document.createElement('audio');
 victorySound.src = 'assets/sounds/victory.wav';
 victorySound.volume = 0.5;
 victorySound.autoPlay = false;
 victorySound.preLoad = true;
 victorySound.controls = true;
+
+var bgSound = document.createElement('audio');
+bgSound.src = 'assets/sounds/bg_music.wav';
+bgSound.volume = 0.5;
+bgSound.autoPlay = false;
+bgSound.preLoad = true;
+bgSound.controls = true;
+bgSound.loop = 'loop';
 
 // stackowerflow creating image array
 var createImage = function (src, nameOfClass, title) {
@@ -77,11 +102,36 @@ images.push(createImage('assets/images/blogger.png', 'icon', 'Icon of Blogger'))
 
 //------------------------------------------- start game screen------------------------------------------//
 function gameScreen() {
-    $('div .start-game-screen').css('display', 'flex').addClass('visible');
-    $('div .start-game-screen').click(function () {
-        $('.start-game-screen').fadeOut('slow', clearInterval(timer), startTimer());
+    $('.game-screen').addClass('visible');
+    $('.game-screen').click(function () {
+        $('.game-screen').fadeOut('slow').removeClass('visible');
+        bgSound.play();
     });
-}
+};
+
+
+//------------------------------------------- victory screen------------------------------------------//
+function victoryScreen() {
+    $('.victory-screen').css('display', 'flex').addClass('visible');
+    $('.results').text('You di it in: \n' + $('#time-pass').text() + ' seconds and ' + $('#moves').text() + ' moves');
+    $('.victory-screen').click(function () {
+        $('.victory-screen').fadeOut('fast').removeClass('visible');
+        bgSound.play();
+        $('.card-container').children('.card').remove();
+        $('.card-container').first().children('div').removeClass('hidden');
+        clearInterval(timer);
+        seconds = 0;
+        $('#time-pass').text(seconds);
+        moves = 0;
+        $('#moves').text(moves);
+    });
+};
+
+//------------------------------------------------ Add card container-----------------------------------//
+function addCardContainer(){
+    $('.card-container').children('.card').remove();
+    $('.card-container').find('#loader').addClass('hidden');
+};
 
 //---------------------------------------------Create cards----------------------------------------------//
 function createCards(cardNumber) {
@@ -100,13 +150,13 @@ function addImagesToCards() {
 };
 
 //------------------------------------- start timer ---------------------------------------//
-var seconds = 0;
 var timer;
-
+var seconds = 0;
 function startTimer() {
     timer = setInterval(function () {
+        ++seconds;
         $('#time-pass').text(seconds);
-        seconds++;
+        console.log(seconds);
     }, 1000);
 };
 
@@ -125,10 +175,21 @@ function checkForWin() {
     if ($('.flip').length === $('.card').length) {
         clearInterval(timer);
         setTimeout(function () {
+            bgSound.pause();
+            bgSound.currentTime = 0;
             console.log('You won!!');
             victorySound.play();
-        }, 500);
+            victoryScreen();
+        }, 500,);
     }
+};
+
+function flipCardsBack () {
+    setTimeout(function () {
+        $('.selected').each(function () {
+            $(this).removeClass('selected flip');
+        });
+    }, 1000);
 };
 
 //------------------------------------flip clicked cards(count moves) and check for a match-------------------------------------------------//
@@ -150,18 +211,14 @@ function flipCards() {
             //----- check if the cards match
             if ($('.selected').length === 2) {
                 if ($('.selected').first().find('img').attr('src') == $('.selected').last().find('img').attr('src')) {
+                    console.log(seconds, moves);
                     $('.selected').each(function () {
                         $(this).removeClass('selected').unbind('click');
                     });
-                    checkForWin();
-                    // play match music
+                        checkForWin();
                 } else {
                     console.log('not matched');
-                    setTimeout(function () {
-                        $('.selected').each(function () {
-                            $(this).removeClass('selected flip');
-                        });
-                    }, 1000);
+                    flipCardsBack();
                 };
             };
         };

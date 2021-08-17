@@ -13,12 +13,29 @@ body {
 
 /*------------------------------------------More-information/icon ----------------*/
 
-.more-info {
+.more-info-container{
     position: fixed;
-    top: 25px;
+    top: 50px;
     right: 25px;
-    width: 50px;
-    height: 50px;
+
+}
+
+#mute-btn,
+#info-btn {
+    background-color: #99B8E6;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    width: 45px;
+    height: 45px;
+}
+
+#mute-btn:hover,
+#info-btn:hover,
+#mute-btn:focus,
+#info-btn:focus {
+    background-color: #eeb449;
 }
 
 /* ------------------------------ Game title --------------------------*/
@@ -71,7 +88,8 @@ body {
     justify-content: center;
 }
 
-.start-game-screen {
+.victory-screen,
+.game-screen {
     display: none;
     position: fixed;
     top: 0;
@@ -84,8 +102,10 @@ body {
     color: #fff;
 }
 
-.start-game-screen.visible {
+.victory-screen.visible,
+.game-screen.visible {
     display: flex;
+    flex-direction: column;
     animation: screen-grow 500ms forwards;
 }
 
@@ -94,7 +114,6 @@ body {
         background-color: rgba(0, 0, 0, 0);
         font-size: 0;
     }
-
     to {
         background-color: rgba(0, 0, 0, 0.8);
         font-size: 5em;
@@ -183,11 +202,27 @@ button {
         grid-template-columns: repeat(8, auto);
     }
 
+    h2 {
+        font-size: 0.75em;
+    }
+
+    h3 {
+        font-size: 0.5em;
+    }
+
+    .victory-screen.visible span,
+    .game-screen.visible span {
+        font-size: 0.5em;
+    }
+    .victory-screen.visible > .results {
+        font-size: 0.3em;
+    }
+
     .game-title {
         font-size: 2em;
     }
 
-    .more-info {
+    .more-info-container {
         top: 5px;
         right: 15px;
         width: 30px;
@@ -227,11 +262,24 @@ button {
         grid-template-columns: repeat(4, auto);
     }
 
+    h2 {
+        font-size: 0.5em;
+    }
+
+    h3 {
+        font-size: 0.5em;
+    }
+
+    .victory-screen.visible span,
+    .game-screen.visible span {
+        font-size: 0.5em;
+    }
+
     .game-title {
         font-size: 2em;
     }
 
-    .more-info {
+    .more-info-container {
         top: 5px;
         right: 15px;
         width: 30px;
@@ -276,7 +324,7 @@ button {
         font-size: 2em;
     }
 
-    .more-info {
+    .more-info-container {
         top: 5px;
         right: 15px;
         width: 30px;
@@ -320,7 +368,7 @@ button {
         font-size: 2em;
     }
 
-    .more-info {
+    .more-info-container {
         top: 5px;
         right: 15px;
         width: 30px;
