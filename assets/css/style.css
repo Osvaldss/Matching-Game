@@ -61,10 +61,73 @@ button {
 #info-btn:focus,
 .continue-btn:hover,
 .continue-btn:focus,
+.close-guide-btn:hover,
+.close-guide-btn:focus,
 #choose-difficulty:hover,
 #choose-difficulty:focus {
     background-color: #eeb449;
 }
+
+.game-tutorial-container {
+    display: none;
+    position: fixed;
+    max-width: 1200px;
+    width: 80vw;
+    max-height: 550px;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    z-index: 10;
+    background-color: #ffe07c;
+    color: rgb(0, 0, 0);
+    border: 3px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.game-tutorial-container > h2 {
+    font-size: 38px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.step-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}
+
+.step-info-container {
+    width: 33%;
+    padding: 30px 10px;
+
+}
+
+.step-info-container h3 {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.step-info-container p {
+    font-size: 19px;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+
+.guide-img {
+    width: 100%;
+    height: auto;
+    border: 3px solid #fff;
+    border-radius: 10px;
+}
+
+/* .game-tutorial-container.visible {
+    display: block;
+} */
 
 /* ------------------------------ Game title --------------------------*/
 .title-container {
@@ -83,11 +146,11 @@ button {
     font-size: 2em;
     display: none;
     justify-content: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .game-info-container p {
-    margin: 0 10px 0;
+    margin: 0 40px 0;
 }
 
 .game-info-container p > i {
@@ -167,8 +230,10 @@ button {
 .victory-screen {
     display: none;
     position: fixed;
-    width: 50vw;
+    width: 40vw;
+    max-width: 600px;
     height: 32vh;
+    max-height: 300px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -182,7 +247,7 @@ button {
 }
 
 .victory-screen.visible {
-    display: flex;
+    display: block;
     flex-direction: column;
 }
 
@@ -200,13 +265,13 @@ button {
 #new-best-score {
     display: none;
     position: fixed;
-    top: 100px;
-    left: 15px;
+    top: 10px;
+    left: 0px;
     color: rgb(255, 255, 255);
     font-size: 20px;
     font-weight: bolder;
     text-align: center;
-    transform: rotate(345deg);
+    transform: rotate(333deg);
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
@@ -231,7 +296,7 @@ button {
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-.victory-overlay-screen {
+/* .victory-overlay-screen {
     display: none;
     position: fixed;
     top: 0;
@@ -239,14 +304,15 @@ button {
     right: 0;
     bottom: 0;
     z-index: 6;
-}
+} */
 
-.victory-overlay-screen.visible {
+/* .victory-overlay-screen.visible {
     display: flex;
     animation: screen-grow 500ms forwards;
-}
+} */
 
-.continue-btn {
+.continue-btn,
+.close-guide-btn {
     padding: 10px;
     position: fixed;
     bottom: -25px;

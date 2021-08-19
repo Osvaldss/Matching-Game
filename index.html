@@ -26,13 +26,18 @@
     <!--Game container -->
     <section class="game-container">
         <div class="game-info-container">
-            <p><i class="fas fa-clock"></i> Time: <span class="time-pass-minutes"> 0 </span> min. <span id="time-pass-seconds">0</span> sec</p>
+            <p><i class="fas fa-clock"></i> Time: <span class="time-pass-minutes"> 0 </span> min.
+                <span id="time-pass-seconds">0</span> sec
+            </p>
             <p><i class="fas fa-mouse"></i> Moves: <span id="moves">0</span></p>
         </div>
         <!--Container keeps all the cards-->
         <div class="card-container">
             <div id='loader' class='laoder-container'>
-                <h2><i class="fas fa-angle-double-down"></i> Please Choose Difficulty <i class="fas fa-angle-double-down"></i></h2>
+                <h2>
+                    <i class="fas fa-angle-double-down"></i> Please Choose Difficulty
+                    <i class="fas fa-angle-double-down"></i>
+                </h2>
                 <!--Container for player to choose difficulty of game -->
                 <div class="difficulty-container">
                     <button id="easy" class='difficulty-btn'><i class="fas fa-star"></i><i class="far fa-star"></i><i
@@ -53,7 +58,7 @@
         <h2>You Win!!!</h2>
         <p id="star-rating"></p>
         <div id='new-best-score'><i class="fas fa-trophy"></i> New Record!!!</div>
-        <p>Your Score: <span class="game-score"></span></p>
+        <p>Your Scored <span class="game-score"></span> points</p>
         <p>Your Best Score on <span class='level-complete'></span>: <span class="best-score"></span></p>
         <button class='continue-btn'>Continue <i class="fas fa-angle-double-right"></i></button>
     </div>
@@ -61,6 +66,27 @@
         <h2>Match The Icons</h2>
         <div>
             <span class="click-to-start">Click to Start</span>
+        </div>
+    </div>
+    <div class="game-tutorial-container">
+        <h2>Game Guide</h2>
+        <div class="step-container">
+            <div class="step-info-container">
+                <h3>Step 1</h3>
+                <p>Choose difficulty level</p>
+                <img class='guide-img' src="assets/images/game_Guide/diff_menu.png" alt="difficulty menu">
+            </div>
+            <div class="step-info-container">
+                <h3>Step 2</h3>
+                <p>Match all cards</p>
+                <img class='guide-img' src="assets/images/game_Guide/match_cards.png" alt="match cards picture">
+            </div>
+            <div class="step-info-container">
+                <h3>Step 3</h3>
+                <p>Get highest score</p>
+                <img class='guide-img' src="assets/images/game_Guide/victory_screen.png" alt="game result window">
+            </div>
+            <button class='close-guide-btn'>Ok <i class="fas fa-angle-double-right"></i></button>
         </div>
     </div>
 

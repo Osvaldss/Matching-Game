@@ -52,7 +52,7 @@ $(document).ready(function () {
 //------------------------------------------------------Hide/show content behind game screen-----------------------------//
 
 function hideContent() {
-    $('.game-title, .more-info-container, .game-container').hide('slow');
+    $('.game-title, .more-info-container, .game-container, .game-tutorial-container').hide('slow');
 }
 
 function showContent() {
@@ -73,6 +73,15 @@ function controlVolume() {
         $('#mute-btn').empty().append('<i class="fas fa-volume-mute"></i>');
     }
 }
+
+//----------------------------------------------------Info btn ----------------------------------------------//
+$('#info-btn').click(function(){
+    $('.game-tutorial-container').fadeToggle('medium');
+});
+
+$('.close-guide-btn').click(function(){
+    $('.game-tutorial-container').fadeOut('medium');
+});
 
 //---------------------------------------------- Victory sound/ background music ----------------------------//
 var victorySound = document.createElement('audio');
@@ -111,7 +120,6 @@ images.push(createImage('assets/images/yahoo.png', 'icon', 'Icon of Yahoo'));
 images.push(createImage('assets/images/youtube.png', 'icon', 'Icon of Youtube'));
 images.push(createImage('assets/images/rss.png', 'icon', 'Icon of RSS Feed'));
 images.push(createImage('assets/images/blogger.png', 'icon', 'Icon of Blogger'));
-
 //------------------------------------------- start game screen------------------------------------------//
 function gameScreen() {
     $('.game-screen').addClass('visible');
@@ -144,7 +152,6 @@ function checkForBestScore(scoreRating){
         console.log('you didint beat your record');
     }
 };
-
 
 //------------------------------------------- victory screen------------------------------------------//
 function victoryScreen() {
