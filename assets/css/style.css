@@ -10,6 +10,12 @@
 
 body {
     background: radial-gradient(#B0EEEC, #99B8E6);
+    min-height: 100vh;
+}
+
+h2 {
+    text-align: center;
+    padding: 15px;
 }
 
 button {
@@ -19,16 +25,20 @@ button {
 
 /*-----------------------------------------------Game container---------------------------*/
 
-.game-container{
-    margin: auto;
+.game-container {
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: center;
 }
 
 /*------------------------------------------More-information/icon ----------------*/
 
-.more-info-container{
+.more-info-container {
+    display: flex;
     position: fixed;
     top: 50px;
-    right: 25px;
+    right: 10px;
     z-index: 5;
 
 }
@@ -42,7 +52,7 @@ button {
     border: 1px solid #fff;
     width: 45px;
     height: 45px;
-    margin: 0;
+    margin: 0 5px;
 }
 
 #mute-btn:hover,
@@ -50,15 +60,21 @@ button {
 #mute-btn:focus,
 #info-btn:focus,
 .continue-btn:hover,
-.continue-btn:focus {
+.continue-btn:focus,
+#choose-difficulty:hover,
+#choose-difficulty:focus {
     background-color: #eeb449;
 }
 
 /* ------------------------------ Game title --------------------------*/
+.title-container {
+    padding: 30px 0;
+}
+
 .game-title {
     color: #1F1E1E;
-    text-align: center;
     font-size: 5em;
+    text-align: center;
 }
 
 /*--------------------------------------Game infor container ----------------------*/
@@ -67,11 +83,15 @@ button {
     font-size: 2em;
     display: none;
     justify-content: center;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .game-info-container p {
-    margin: 0 25px 0;
+    margin: 0 10px 0;
+}
+
+.game-info-container p > i {
+    color: #696968;
 }
 
 .game-info-container.visible {
@@ -85,6 +105,10 @@ button {
     grid-template-columns: repeat(8, auto);
     justify-content: center;
     perspective: 500px;
+}
+
+.card-container h2 > i {
+    color: #fff;
 }
 
 .laoder-container {
@@ -110,14 +134,14 @@ button {
 
 .difficulty-btn {
     background-color: #99B8E6;
-    font-size: 20px;
+    font-size: 25px;
     color: #fff;
     border-radius: 10px;
     border: 1px solid #fff;
-    width: 125px;
-    height: 125px;
-    margin: 5px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    width: 150px;
+    height: 150px;
+    margin:0 5px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .difficulty-btn:hover,
@@ -143,18 +167,18 @@ button {
 .victory-screen {
     display: none;
     position: fixed;
-    width: 45vw;
-    height: 45vh;
+    width: 50vw;
+    height: 32vh;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     align-items: center;
     z-index: 7;
-    background-color: #99B8E6;
-    color: #fff;
+    background-color: #ffe07c;
+    color: rgb(0, 0, 0);
     border: 3px solid #fff;
     border-radius: 10px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .victory-screen.visible {
@@ -163,12 +187,48 @@ button {
 }
 
 .victory-screen h2 {
-    font-size: 2.5em;
-    padding-top: 0.7em;
+    font-size: 50px;
+    padding: 25px 0 10px 0;
 }
 
-.victory-screen p {
+.victory-screen p,
+.level-complete {
     font-size: 20px;
+    margin: 5px 0;
+}
+
+#new-best-score {
+    display: none;
+    position: fixed;
+    top: 100px;
+    left: 15px;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    transform: rotate(345deg);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+#new-best-score.visible {
+    display: flex;
+    flex-direction: column;
+}
+
+#new-best-score i {
+    font-size: 25px;
+    color: #ffa500;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+#star-rating {
+    font-size: 40px;
+    margin: 10px 0;
+}
+
+#star-rating > i {
+    color: #ffa500;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .victory-overlay-screen {
@@ -189,8 +249,8 @@ button {
 .continue-btn {
     padding: 10px;
     position: fixed;
-    bottom: -10px;
-    right: -10px;
+    bottom: -25px;
+    margin: 0 auto;
     background-color: #99B8E6;
     font-size: 20px;
     color: #fff;
@@ -213,11 +273,13 @@ button {
     0% {
         font-size: 25px;
     }
+
     50% {
         font-size: 30px;
     }
+
     100% {
-        font-size: 25px; 
+        font-size: 25px;
     }
 }
 
@@ -226,6 +288,7 @@ button {
         background-color: rgba(0, 0, 0, 0);
         font-size: 0;
     }
+
     to {
         background-color: rgba(93, 100, 243, 0.95);
         font-size: 5em;
@@ -238,7 +301,17 @@ button {
     font-size: 2em;
     display: flex;
     justify-content: center;
-    margin-top: 25px;
+    margin-top: 15px;
+}
+
+#choose-difficulty {
+    background-color: #99B8E6;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    height: 45px;
+    margin: 0;
 }
 
 /*-------------------------------------- All card styling----------------------------------*/
@@ -307,8 +380,12 @@ button {
 }
 
 
-/*---------------------------Media queries------------------------------*/
+/*-------------------------------------------------------------------------Media queries-----------------------------------------------------------------------------*/
 @media screen and (max-width: 688px) and (orientation: landscape) {
+    .game-container{
+        justify-content: flex-start;
+    }
+
     .card-container {
         width: 100%;
         grid-template-columns: repeat(8, auto);
@@ -326,7 +403,8 @@ button {
     .game-screen.visible span {
         font-size: 0.5em;
     }
-    .victory-screen.visible > .results {
+
+    .victory-screen.visible>.results {
         font-size: 0.3em;
     }
 
@@ -335,10 +413,8 @@ button {
     }
 
     .more-info-container {
-        top: 5px;
-        right: 15px;
-        width: 30px;
-        height: 30px;
+        top: 10px;
+        left: 5px;
     }
 
     .game-info-container {
@@ -356,7 +432,7 @@ button {
         margin: 2px;
     }
 
-    .card-back:hover{
+    .card-back:hover {
         width: 75px;
         height: 95px;
     }
@@ -368,6 +444,11 @@ button {
 }
 
 @media screen and (max-width: 688px) and (orientation: portrait) {
+
+    .game-container{
+        justify-content: flex-start;
+    }
+
     .card-container {
         width: 100%;
         grid-template-columns: repeat(4, auto);
@@ -376,11 +457,7 @@ button {
     h2 {
         font-size: 0.5em;
     }
-
-    h3 {
-        font-size: 0.5em;
-    }
-
+    
     .victory-screen.visible span,
     .game-screen.visible span {
         font-size: 0.5em;
@@ -391,10 +468,9 @@ button {
     }
 
     .more-info-container {
-        top: 5px;
-        right: 15px;
-        width: 30px;
-        height: 30px;
+        top: 10px;
+        left: 5px;
+        flex-direction: column;
     }
 
     .game-info-container {
@@ -428,7 +504,6 @@ button {
 }
 
 @media screen and (min-width: 689px) and (max-width: 1200px) and (orientation: landscape) {
-
     .card-container {
         width: 100%;
         grid-template-columns: repeat(6, auto);
@@ -441,8 +516,6 @@ button {
     .more-info-container {
         top: 5px;
         right: 15px;
-        width: 30px;
-        height: 30px;
     }
 
     .game-info-container {
@@ -470,6 +543,7 @@ button {
         height: 60px;
     }
 }
+
 @media screen and (min-width: 689px) and (max-width: 1200px) and (orientation: portrait) {
 
     .card-container {
@@ -484,8 +558,6 @@ button {
     .more-info-container {
         top: 5px;
         right: 15px;
-        width: 30px;
-        height: 30px;
     }
 
     .game-info-container {

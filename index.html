@@ -11,52 +11,57 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Matching Game</title>
+    <title>Matching The Icons</title>
 </head>
 
 <body>
-    <h1 class="game-title">Match The Icons</h1>
-
-    <!-- Button for more information how the game works-->
+    <div class="title-container">
+        <h1 class="game-title">Match The Icons</h1>
+    </div>
+    <!-- Container for info btn and mute on/off button-->
     <div class="more-info-container">
-        <button id="info-btn" aria-label="more information button"><i class="fas fa-info"></i></button>
         <button id="mute-btn" aria-label="mute on/off button"><i class="fas fa-volume-up"></i></button>
+        <button id="info-btn" aria-label="more information button"><i class="fas fa-info"></i></button>
     </div>
     <!--Game container -->
     <section class="game-container">
         <div class="game-info-container">
-            <p> Time: <span id="time-pass">0</span> sec</p>
-            <p> Moves: <span id="moves">0</span></p>
+            <p><i class="fas fa-clock"></i> Time: <span class="time-pass-minutes"> 0 </span> min. <span id="time-pass-seconds">0</span> sec</p>
+            <p><i class="fas fa-mouse"></i> Moves: <span id="moves">0</span></p>
         </div>
         <!--Container keeps all the cards-->
         <div class="card-container">
             <div id='loader' class='laoder-container'>
-                <h2>Please Choose Difficulty</h2>
+                <h2><i class="fas fa-angle-double-down"></i> Please Choose Difficulty <i class="fas fa-angle-double-down"></i></h2>
                 <!--Container for player to choose difficulty of game -->
                 <div class="difficulty-container">
-                    <button id="easy" class='difficulty-btn'><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></br>Easy</button>
-                    <button id="medium" class='difficulty-btn'><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></br>Medium</button>
-                    <button id="hard" class='difficulty-btn'><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></br>Hard</button>
+                    <button id="easy" class='difficulty-btn'><i class="fas fa-star"></i><i class="far fa-star"></i><i
+                            class="far fa-star"></i></br>Easy</button>
+                    <button id="medium" class='difficulty-btn'><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="far fa-star"></i></br>Medium</button>
+                    <button id="hard" class='difficulty-btn'><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i></br>Hard</button>
                 </div>
                 <!-- <img src="assets/images/loader.svg" width="150px" height="150px" alt="loading" /> -->
             </div>
         </div>
         <div class="game-options">
-            <button id="choose-difficulty">Change difficulty</button>
+            <button id="choose-difficulty"><i class="fas fa-angle-double-left"></i> Go Back</button>
         </div>
     </section>
     <div class="victory-screen">
         <h2>You Win!!!</h2>
-        <p>Your Score: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
-        <span class='results'></span>
-        <button class='continue-btn'>Click to continue <i class="fas fa-caret-right"></i></button>
+        <p id="star-rating"></p>
+        <div id='new-best-score'><i class="fas fa-trophy"></i> New Record!!!</div>
+        <p>Your Score: <span class="game-score"></span></p>
+        <p>Your Best Score on <span class='level-complete'></span>: <span class="best-score"></span></p>
+        <button class='continue-btn'>Continue <i class="fas fa-angle-double-right"></i></button>
     </div>
-    <div class="victory-overlay-screen"></div>
     <div class="game-screen">
         <h2>Match The Icons</h2>
         <div>
-        <span class="click-to-start">Click to Start</span>
-         </div>
+            <span class="click-to-start">Click to Start</span>
+        </div>
     </div>
 
     <script type="text/javascript" src="assets/js/script.js" async></script>
