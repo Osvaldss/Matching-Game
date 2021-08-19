@@ -15,6 +15,12 @@
 </head>
 
 <body>
+    <div class="game-screen">
+        <h2>Match The Icons</h2>
+        <div>
+            <span class="click-to-start">Click to Start</span>
+        </div>
+    </div>
     <div class="title-container">
         <h1 class="game-title">Match The Icons</h1>
     </div>
@@ -22,9 +28,10 @@
     <div class="more-info-container">
         <button id="mute-btn" aria-label="mute on/off button"><i class="fas fa-volume-up"></i></button>
         <button id="info-btn" aria-label="more information button"><i class="fas fa-info"></i></button>
+        <button id="score-board-btn" aria-label="button to open score board"><i class="fas fa-trophy"></i></button>
     </div>
     <!--Game container -->
-    <section class="game-container">
+    <section class="game-container select-disable">
         <div class="game-info-container">
             <p><i class="fas fa-clock"></i> Time: <span class="time-pass-minutes"> 0 </span> min.
                 <span id="time-pass-seconds">0</span> sec
@@ -62,10 +69,36 @@
         <p>Your Best Score on <span class='level-complete'></span>: <span class="best-score"></span></p>
         <button class='continue-btn'>Continue <i class="fas fa-angle-double-right"></i></button>
     </div>
-    <div class="game-screen">
-        <h2>Match The Icons</h2>
-        <div>
-            <span class="click-to-start">Click to Start</span>
+    <div class="score-board">
+        <h2> Your Best Scores</i></h2>
+        <div class="best-score-container">
+            <p class="best-score-on-board">
+                <span class="score-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </span>
+                Easy Difficulty 
+            </p>
+            <span class="best-score-easy"></span>
+            <p class="best-score-on-board">
+                <span class="score-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </span>
+                Medium Difficulty
+            </p>
+            <span class="best-score-medium"></span>
+            <p class="best-score-on-board">
+                <span class="score-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </span>
+                Hard Difficulty
+            </p>
+            <span class="best-score-hard"></span>
         </div>
     </div>
     <div class="game-tutorial-container">
@@ -86,8 +119,8 @@
                 <p>Get highest score</p>
                 <img class='guide-img' src="assets/images/game_Guide/victory_screen.png" alt="game result window">
             </div>
-            <button class='close-guide-btn'>Ok <i class="fas fa-angle-double-right"></i></button>
         </div>
+        <button class='close-guide-btn' aria-label="close button"><i class="fas fa-times"></i></button>
     </div>
 
     <script type="text/javascript" src="assets/js/script.js" async></script>

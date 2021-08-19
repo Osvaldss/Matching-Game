@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    hideContent();
     gameScreen();
     $('#mute-btn').click(function () {
         controlVolume();
@@ -9,15 +8,24 @@ $(document).ready(function () {
         if ($(this).is('#easy')) {
             cardNumber = 8;
             gameType = "Easy";
-            $('.game-container').css('justify-content', 'center');
+            if ($(window).width() >= 768) {
+                $('.game-container').css('justify-content', 'center');
+            }
         } else if ($(this).is('#medium')) {
             cardNumber = 16;
             gameType = "Medium";
-            $('.game-container').css('justify-content', 'flex-start');
+            if ($(window).width() >= 768) {
+                $('.game-container').css('justify-content', 'flex-start');
+            }
         } else if ($(this).is('#hard')) {
             cardNumber = 24;
             gameType = "Hard";
-            $('.game-container').css('justify-content', 'flex-start');
+            if ($(window).width() >= 768) {
+                $('.game-container').css('justify-content', 'flex-start');
+            }
+            $('html,body').animate({
+                scrollTop: $(".game-options").offset().top
+            }, 'slow');
         } else {
             alert('Difficulty was not picked!!!');
         }
@@ -35,7 +43,6 @@ $(document).ready(function () {
     //----------------------------------------Choose difficulty button---------------------//
     $('#choose-difficulty').click(function () {
         $('#choose-difficulty').hide();
-        $('.game-container').css('justify-content', 'center');
         $('.card-container').children('.card').remove();
         $('.card-container').first().children('div').removeClass('hidden');
         $('.game-info-container').removeClass('visible');
@@ -52,7 +59,7 @@ $(document).ready(function () {
 //------------------------------------------------------Hide/show content behind game screen-----------------------------//
 
 function hideContent() {
-    $('.game-title, .more-info-container, .game-container, .game-tutorial-container').hide('slow');
+    $('.game-title, .more-info-container, .game-container, .game-tutorial-container, .score-board').hide("fast");
 }
 
 function showContent() {
@@ -74,12 +81,21 @@ function controlVolume() {
     }
 }
 
+//-------------------------------------------Score board btn ---------------------------------------------//
+$('#score-board-btn').click(function () {
+    $('.score-board').fadeToggle('medium');
+    $('.best-score-easy').text(bestScore[0]);
+    $('.best-score-medium').text(bestScore[1]);
+    $('.best-score-hard').text(bestScore[2]);
+});
+
+
 //----------------------------------------------------Info btn ----------------------------------------------//
-$('#info-btn').click(function(){
+$('#info-btn').click(function () {
     $('.game-tutorial-container').fadeToggle('medium');
 });
 
-$('.close-guide-btn').click(function(){
+$('.close-guide-btn').click(function () {
     $('.game-tutorial-container').fadeOut('medium');
 });
 
@@ -122,9 +138,10 @@ images.push(createImage('assets/images/rss.png', 'icon', 'Icon of RSS Feed'));
 images.push(createImage('assets/images/blogger.png', 'icon', 'Icon of Blogger'));
 //------------------------------------------- start game screen------------------------------------------//
 function gameScreen() {
-    $('.game-screen').addClass('visible');
+    $('.game-screen').fadeIn('medium').css('display', 'flex');
     $('.game-screen').click(function () {
-        $('.game-screen').fadeOut('slow').removeClass('visible');
+        $('.game-screen').fadeOut('slow').hide('slow');
+        $('.game-title, .more-info-container, .game-container, .game-tutorial-container').css('visibility', 'visible');
         bgSound.play();
         showContent();
         $('#choose-difficulty').hide();
@@ -132,18 +149,18 @@ function gameScreen() {
 };
 
 var bestScore = [0, 0, 0];
-function checkForBestScore(scoreRating){
-    if (gameType === "Easy" && scoreRating > bestScore[0]){
+function checkForBestScore(scoreRating) {
+    if (gameType === "Easy" && scoreRating > bestScore[0]) {
         bestScore.splice(0, 1, scoreRating);
         console.log(bestScore);
         $('#new-best-score').addClass('visible');
         $('.best-score').text(bestScore[0]);
-    } else if (gameType === "Medium" && scoreRating > bestScore[1]){
+    } else if (gameType === "Medium" && scoreRating > bestScore[1]) {
         bestScore.splice(1, 1, scoreRating);
         console.log(bestScore);
         $('#new-best-score').addClass('visible');
         $('.best-score').text(bestScore[1]);
-    } else if (gameType === "Hard" && scoreRating > bestScore[2]){
+    } else if (gameType === "Hard" && scoreRating > bestScore[2]) {
         bestScore.splice(2, 1, scoreRating);
         console.log(bestScore);
         $('#new-best-score').addClass('visible');
@@ -157,7 +174,7 @@ function checkForBestScore(scoreRating){
 function victoryScreen() {
     hideContent();
     $('.victory-screen, .victory-overlay-screen').fadeIn('slow').css('display', 'flex').addClass('visible');
-    $('.level-complete').text( gameType + ' difficulty');
+    $('.level-complete').text(gameType + ' difficulty');
     scoreByGameType(gameType);
     starRating(scoreRating);
     $('.game-score').text(scoreRating);
@@ -165,7 +182,6 @@ function victoryScreen() {
     $('.continue-btn').click(function () {
         showContent();
         $('.victory-screen').fadeOut('fast');
-        $('.game-container').css('justify-content', 'center');
         $('.card-container').children('.card').remove();
         $('.card-container').first().children('div').removeClass('hidden');
         $('.game-info-container, #new-best-score').removeClass('visible');
@@ -290,7 +306,7 @@ function countScore(levelCompleteTime, totalMoves) {
             case totalMoves >= 38:
                 partOfScoreTwo = 0;
                 break;
-            case totalMoves >= 35 && totalMoves < 35:
+            case totalMoves >= 35 && totalMoves < 38:
                 partOfScoreTwo = 50;
                 break;
             case totalMoves >= 31 && totalMoves < 35:
