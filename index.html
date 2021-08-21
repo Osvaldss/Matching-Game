@@ -24,7 +24,7 @@
     <div class="title-container">
         <h1 class="game-title">Match The Icons</h1>
     </div>
-    <!-- Container for info btn and mute on/off button-->
+    <!-- Container for mute/info/score buttons-->
     <div class="more-info-container">
         <button id="mute-btn" aria-label="mute on/off button"><i class="fas fa-volume-up"></i></button>
         <button id="info-btn" aria-label="more information button"><i class="fas fa-info"></i></button>
@@ -35,7 +35,7 @@
             <i class="fas fa-angle-double-down"></i> Please Choose Difficulty
             <i class="fas fa-angle-double-down"></i>
         </h2>
-        <!--Container for player to choose difficulty of game -->
+        <!--Container for difficulty menu -->
         <div class="difficulty-container">
             <button id="easy" class='difficulty-btn'><i class="fas fa-star"></i><i class="far fa-star"></i><i
                     class="far fa-star"></i><br>Easy</button>
@@ -45,7 +45,7 @@
                     class="fas fa-star"></i><br>Hard</button>
         </div>
     </div>
-    <!--Game container -->
+    <!--Game container-->
     <div class="game-container select-disable">
         <div class="game-info-container">
             <p><i class="fas fa-clock"></i> Time: <span class="time-pass-minutes"> 0 </span> min.
@@ -53,7 +53,7 @@
             </p>
             <p><i class="fas fa-mouse"></i> Moves: <span id="moves">0</span></p>
         </div>
-        <!--Container keeps all the cards-->
+        <!--Card container-->
         <div class="card-container">
         </div>
         <div class="game-options">
@@ -61,6 +61,7 @@
                     class="fas fa-angle-double-right"></i></button>
         </div>
     </div>
+    <!-----------Game starting screen----->
     <div class="victory-screen">
         <h2>You Win!!!</h2>
         <p id="star-rating"></p>
@@ -70,6 +71,7 @@
         <button class='continue-btn'>Continue <i class="fas fa-angle-double-right"></i></button>
     </div>
     <div class="overlay-screen"></div>
+    <!----------------------Scoreboard---------------------->
     <div class="score-board">
         <h2> Your Best Scores</h2>
         <div class="best-score-container">
@@ -109,6 +111,7 @@
         </div>
         <button class='close-scoare-board-btn' aria-label="close button"><i class="fas fa-times"></i></button>
     </div>
+    <!--------------------------------Game guide container-->
     <div class="game-tutorial-container select-disable">
         <button class="prev" aria-label="previous"><i class="fas fa-angle-double-left"></i></button>
         <div class="step-container">

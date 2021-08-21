@@ -159,9 +159,9 @@ button {
     padding: 10px 0;
 }
 
-    .guide-img-one,
-    .guide-img-two,
-    .guide-img-three {
+.guide-img-one,
+.guide-img-two,
+.guide-img-three {
     width: 100%;
     height: auto;
     border-radius: 10px;
@@ -259,7 +259,7 @@ span[class*='best-score-'] {
     margin-bottom: 20px;
 }
 
-.difficulty-cont-wrapper h2 > i {
+.difficulty-cont-wrapper h2>i {
     color: #fff;
 }
 
@@ -280,6 +280,7 @@ span[class*='best-score-'] {
     margin: 0 5px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 /*-----------------------------------------------Pop up screens ------------------------------*/
 
 .game-screen {
@@ -416,7 +417,8 @@ span[class*='best-score-'] {
         font-size: 25px;
     }
 }
-/*------------------------------------Game option container / change difficulty button -----------------------*/
+
+/*------------------------------------Game option container / go back to menu btn -----------------------*/
 .game-options {
     color: #333131;
     font-size: 2em;

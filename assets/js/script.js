@@ -30,7 +30,7 @@ $(document).ready(function () {
         flipCards();
     });
 
-    //----------------------------------------Go back to main screen---------------------//
+    //----------------------------------------Button to go back to menu---------------------//
     $('#back-to-menu-btn').click(function () {
         $('#back-to-menu-btn').hide();
         $('.card-container').children('.card').remove();
@@ -72,18 +72,18 @@ $(document).ready(function () {
     $('.next').click(function () {
         var currentStep = $('.active');
         var nextStep = currentStep.next();
-    
-        if(nextStep.length) {
+
+        if (nextStep.length) {
             currentStep.removeClass('active').css('z-index', -10);
             nextStep.addClass('active').css('z-index', 10);
         }
     });
-    
+
     $('.prev').click(function () {
         var currentStep = $('.active');
         var prevStep = currentStep.prev();
-    
-        if(prevStep.length) {
+
+        if (prevStep.length) {
             currentStep.removeClass('active').css('z-index', -10);
             prevStep.addClass('active').css('z-index', 10);
         }
@@ -235,6 +235,7 @@ function scoreByGameType(gameType) {
 }
 
 var bestScore = [0, 0, 0];
+
 function checkForBestScore(scoreRating) {
     if (gameType === "Easy" && scoreRating > bestScore[0]) {
         bestScore.splice(0, 1, scoreRating);
@@ -356,6 +357,7 @@ function countScore(levelCompleteTime, totalMoves) {
 }
 
 var scoreRating;
+
 function countFinalScore(partOfScoreOne, partOfScoreTwo) {
     if (partOfScoreOne >= 0 && partOfScoreTwo >= 0) {
         scoreRating = partOfScoreOne + partOfScoreTwo;
@@ -390,7 +392,7 @@ function starRating(scoreRating) {
             console.log("error in score!");
     }
 }
-//-------------------------------------------- Add stars one by one----------------------------------//
+//-------------------------------------------- Add star one by one----------------------------------//
 function giveStars(starNumber) {
     for (let i = 0; i < starNumber; i++) {
         setTimeout(function () {
@@ -425,6 +427,7 @@ function addImagesToCards() {
 var timer;
 var seconds = 0;
 var minutes = 0;
+
 function startTimer() {
     timer = setInterval(function () {
         if (seconds < 59) {
