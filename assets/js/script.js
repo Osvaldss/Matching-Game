@@ -112,17 +112,17 @@ function gameScreen() {
         $('.game-container').addClass('hidden');
         $('#back-to-menu-btn').hide();
     });
-};
+}
 
 //------------------------------------------------------Hide/show content behind game screen-----------------------------//
 function hideContent() {
     $('.game-title, .more-info-container, .game-tutorial-container, .score-board').hide("fast");
     $('.game-container').addClass('hidden');
-};
+}
 
 function showContent() {
     $('.game-title, .more-info-container').fadeIn('medium');
-};
+}
 
 //---------------------------------------------------- Mute On/Off button control ----------------------------------//
 function controlVolume() {
@@ -206,12 +206,12 @@ function victoryScreen() {
         moves = 0;
         $('#moves').text(moves);
     });
-};
+}
 
 //----------------------------------------------------Add Game score container--------------------------------//
 function gameScoreConatainer() {
     $('.game-info-container').addClass('visible');
-};
+}
 
 //------------------------------------------------- Counting score----------------------------//
 function scoreByGameType(gameType) {
@@ -220,19 +220,19 @@ function scoreByGameType(gameType) {
     let totalMoves = parseInt($('#moves').text());
     let levelCompleteTime;
     if (gameType === 'Easy') {
-        console.log('Pasirinkai leveli easy');
+        console.log('Easy level chosen');
         levelCompleteTime = parseInt(60 - (totalSeconds + (60 * totalMinutes)));
         countScore(levelCompleteTime, totalMoves);
     } else if (gameType === 'Medium') {
         levelCompleteTime = parseInt(90 - (totalSeconds + (60 * totalMinutes)));
-        console.log('Pasirinkai leveli medium');
+        console.log('Medium level chosen');
         countScore(levelCompleteTime, totalMoves);
     } else if (gameType === 'Hard') {
-        console.log('Pasirinkai leveli hard');
+        console.log('Hard level chosen');
         levelCompleteTime = parseInt(120 - (totalSeconds + (60 * totalMinutes)));
         countScore(levelCompleteTime, totalMoves);
     }
-};
+}
 
 var bestScore = [0, 0, 0];
 function checkForBestScore(scoreRating) {
@@ -254,7 +254,7 @@ function checkForBestScore(scoreRating) {
     } else {
         console.log('you didint beat your record');
     }
-};
+}
 
 function countScore(levelCompleteTime, totalMoves) {
     console.log(levelCompleteTime, totalMoves);
@@ -302,7 +302,7 @@ function countScore(levelCompleteTime, totalMoves) {
                 partOfScoreTwo = 250;
                 break;
             default:
-                console.log("failed to count score two on easy level")
+                console.log("failed to count score two on easy level");
         }
     } else if (gameType === 'Medium') {
         switch (true) {
@@ -325,7 +325,7 @@ function countScore(levelCompleteTime, totalMoves) {
                 partOfScoreTwo = 250;
                 break;
             default:
-                console.log("failed to count score two on medium level")
+                console.log("failed to count score two on medium level");
         }
     } else if (gameType === 'Hard') {
         switch (true) {
@@ -348,22 +348,21 @@ function countScore(levelCompleteTime, totalMoves) {
                 partOfScoreTwo = 250;
                 break;
             default:
-                console.log("failed to count score two on hard level")
+                console.log("failed to count score two on hard level");
         }
     }
     console.log(partOfScoreOne, partOfScoreTwo);
     countFinalScore(partOfScoreOne, partOfScoreTwo);
-};
+}
 
 var scoreRating;
 function countFinalScore(partOfScoreOne, partOfScoreTwo) {
     if (partOfScoreOne >= 0 && partOfScoreTwo >= 0) {
         scoreRating = partOfScoreOne + partOfScoreTwo;
-        console.log(scoreRating + 'tasku suma surinkta');
     } else {
         console.log("error in counting final score");
     }
-};
+}
 
 
 //-------------------------------------------------------------Star rating function---------------------------------------//
@@ -390,37 +389,37 @@ function starRating(scoreRating) {
         default:
             console.log("error in score!");
     }
-};
+}
 //-------------------------------------------- Add stars one by one----------------------------------//
 function giveStars(starNumber) {
     for (let i = 0; i < starNumber; i++) {
         setTimeout(function () {
             $('#star-rating').append('<i class="fas fa-star"></i>');
         }, i * 500);
-    };
-};
+    }
+}
 
 //------------------------------------------------ Add card container-----------------------------------//
 function addCardContainer() {
     $('.card-container').children('.card').remove();
     $('.difficulty-cont-wrapper').addClass('hidden');
-};
+}
 
 //---------------------------------------------Create cards----------------------------------------------//
 function createCards(cardNumber) {
     for (let i = 0; i < cardNumber; i++) {
         $('.card-container').append('<div class="card"></div>');
-    };
+    }
     $('.card').append('<div class="card-back"></div>').append('<div class="card-front"></div>');
-};
+}
 
 //---------------------------------------------Add images to each card----------------------------------//
 function addImagesToCards() {
     let allFrontCards = $('.card-front');
     for (let j = 0; j < images.length; j++) {
         allFrontCards.slice(j * 2, j * 2 + 2).append(images[j]);
-    };
-};
+    }
+}
 
 //------------------------------------- start timer ---------------------------------------//
 var timer;
@@ -431,18 +430,16 @@ function startTimer() {
         if (seconds < 59) {
             ++seconds;
             $('#time-pass-seconds').text(seconds);
-            console.log(seconds);
-        } else if (seconds = 59) {
+        } else if (seconds === 59) {
             seconds = 0;
             ++minutes;
             $('#time-pass-seconds').text(seconds);
             $('.time-pass-minutes').text(minutes);
-            console.log(minutes + 'minute');
         }
     }, 1000);
-};
+}
 
-//--------------------------------------- shuffle cards Fisher–Yates shuffle wikipedia --------------------------------------------//
+//--------------------------------------- shuffle cards - Fisher–Yates shuffle wikipedia --------------------------------------------//
 function shuffleCards() {
     let cards = $('.card');
     for (let i = cards.length - 1; i > 0; i--) {
@@ -450,7 +447,7 @@ function shuffleCards() {
         cards[randomIndex].style.order = i;
         cards[i].style.order = randomIndex;
     }
-};
+}
 
 //--------------------------------------- check for victory-------------------------------------------------------//
 function checkForWin() {
@@ -462,9 +459,9 @@ function checkForWin() {
             console.log('You won!!');
             victorySound.play();
             victoryScreen();
-        }, 500, );
+        }, 500);
     }
-};
+}
 
 //--------------------------------------------- flip cards back if they not match--------------------------------------//
 function flipCardsBack() {
@@ -473,7 +470,7 @@ function flipCardsBack() {
             $(this).removeClass('selected flip');
         });
     }, 1000);
-};
+}
 
 //------------------------------------flip clicked cards(count moves) and check for a match-------------------------------------------------//
 function flipCards() {
@@ -487,13 +484,12 @@ function flipCards() {
             // count moves
             if (!$(this).hasClass('selected')) {
                 moves++;
-            };
+            }
             $('#moves').text(moves);
             $(this).addClass('selected flip');
             //----- check if the cards match
             if ($('.selected').length === 2) {
                 if ($('.selected').first().find('img').attr('src') == $('.selected').last().find('img').attr('src')) {
-                    console.log(seconds, moves);
                     $('.selected').each(function () {
                         $(this).removeClass('selected').unbind('click');
                     });
@@ -501,8 +497,8 @@ function flipCards() {
                 } else {
                     console.log('not matched');
                     flipCardsBack();
-                };
-            };
-        };
+                }
+            }
+        }
     });
-};
+}
