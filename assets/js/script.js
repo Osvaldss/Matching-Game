@@ -8,44 +8,36 @@ $(document).ready(function () {
         if ($(this).is('#easy')) {
             cardNumber = 8;
             gameType = "Easy";
-            if ($(window).width() >= 768) {
-                $('.game-container').css('justify-content', 'center');
-            }
         } else if ($(this).is('#medium')) {
             cardNumber = 16;
             gameType = "Medium";
-            if ($(window).width() >= 768) {
-                $('.game-container').css('justify-content', 'flex-start');
-            }
         } else if ($(this).is('#hard')) {
             cardNumber = 24;
             gameType = "Hard";
-            if ($(window).width() >= 768) {
-                $('.game-container').css('justify-content', 'flex-start');
-            }
-            $('html,body').animate({
-                scrollTop: $(".game-options").offset().top
-            }, 'slow');
         } else {
             alert('Difficulty was not picked!!!');
         }
+        $('.game-container').removeClass('hidden');
+        $('.score-board').css('display', 'none');
         startTimer();
         gameScoreConatainer();
         addCardContainer();
         createCards(cardNumber);
         addImagesToCards();
         shuffleCards();
-        $('#choose-difficulty').fadeIn('slow');
+        $('#back-to-menu-btn').fadeIn('slow');
+        $('.more-info-container, .title-container').css('display', 'none');
         flipCards();
     });
 
-
-    //----------------------------------------Choose difficulty button---------------------//
-    $('#choose-difficulty').click(function () {
-        $('#choose-difficulty').hide();
+    //----------------------------------------Go back to main screen---------------------//
+    $('#back-to-menu-btn').click(function () {
+        $('#back-to-menu-btn').hide();
         $('.card-container').children('.card').remove();
-        $('.card-container').first().children('div').removeClass('hidden');
+        $('.game-container').addClass('hidden');
+        $('.difficulty-cont-wrapper').removeClass('hidden');
         $('.game-info-container').removeClass('visible');
+        $('.more-info-container, .title-container').fadeIn('medium');
         clearInterval(timer);
         minutes = 0;
         seconds = 0;
@@ -53,18 +45,84 @@ $(document).ready(function () {
         moves = 0;
         $('#moves').text(moves);
     });
+
+    //-------------------------------------------Score board btn ---------------------------------------------//
+    $('#score-board-btn').click(function () {
+        $('.score-board').fadeIn('medium');
+        $('.overlay-screen').addClass('show');
+        $('.best-score-easy').text(bestScore[0]);
+        $('.best-score-medium').text(bestScore[1]);
+        $('.best-score-hard').text(bestScore[2]);
+    });
+
+    $('.close-scoare-board-btn').click(function () {
+        $('.score-board').fadeOut(100);
+        $('.overlay-screen').removeClass('show');
+    });
+
+    //----------------------------------------------------Info btn ----------------------------------------------//
+    $('#info-btn').click(function () {
+        $('.game-tutorial-container').fadeToggle('medium');
+        $('.overlay-screen').addClass('show');
+        setTimeout(function () {
+            $('.score-board').css('display', 'none');
+        }, 1000);
+    });
+
+    $('.next').click(function () {
+        var currentStep = $('.active');
+        var nextStep = currentStep.next();
+    
+        if(nextStep.length) {
+            currentStep.removeClass('active').css('z-index', -10);
+            nextStep.addClass('active').css('z-index', 10);
+        }
+    });
+    
+    $('.prev').click(function () {
+        var currentStep = $('.active');
+        var prevStep = currentStep.prev();
+    
+        if(prevStep.length) {
+            currentStep.removeClass('active').css('z-index', -10);
+            prevStep.addClass('active').css('z-index', 10);
+        }
+    });
+
+    $('.close-guide-btn').click(function () {
+        $('.game-tutorial-container').fadeOut(100);
+        $('.overlay-screen').removeClass('show');
+        if (!$('.step-container .step-info-container:first-child').hasClass('active')) {
+            let currentActive = $('.active');
+            currentActive.removeClass('active').css('z-index', -10);
+            $('.step-container .step-info-container:first-child').addClass('active').css('z-index', -10);
+        }
+    });
 });
 
 
-//------------------------------------------------------Hide/show content behind game screen-----------------------------//
+//------------------------------------------- start game screen------------------------------------------//
+function gameScreen() {
+    $('.game-screen').fadeIn('medium').css('display', 'flex');
+    $('.game-screen').click(function () {
+        $('.game-screen').fadeOut('slow');
+        $('.game-title, .more-info-container, .game-container, .game-tutorial-container, .difficulty-cont-wrapper').css('visibility', 'visible');
+        bgSound.play();
+        showContent();
+        $('.game-container').addClass('hidden');
+        $('#back-to-menu-btn').hide();
+    });
+};
 
+//------------------------------------------------------Hide/show content behind game screen-----------------------------//
 function hideContent() {
-    $('.game-title, .more-info-container, .game-container, .game-tutorial-container, .score-board').hide("fast");
-}
+    $('.game-title, .more-info-container, .game-tutorial-container, .score-board').hide("fast");
+    $('.game-container').addClass('hidden');
+};
 
 function showContent() {
-    $('.game-title, .more-info-container, .game-container').fadeIn('medium');
-}
+    $('.game-title, .more-info-container').fadeIn('medium');
+};
 
 //---------------------------------------------------- Mute On/Off button control ----------------------------------//
 function controlVolume() {
@@ -80,24 +138,6 @@ function controlVolume() {
         $('#mute-btn').empty().append('<i class="fas fa-volume-mute"></i>');
     }
 }
-
-//-------------------------------------------Score board btn ---------------------------------------------//
-$('#score-board-btn').click(function () {
-    $('.score-board').fadeToggle('medium');
-    $('.best-score-easy').text(bestScore[0]);
-    $('.best-score-medium').text(bestScore[1]);
-    $('.best-score-hard').text(bestScore[2]);
-});
-
-
-//----------------------------------------------------Info btn ----------------------------------------------//
-$('#info-btn').click(function () {
-    $('.game-tutorial-container').fadeToggle('medium');
-});
-
-$('.close-guide-btn').click(function () {
-    $('.game-tutorial-container').fadeOut('medium');
-});
 
 //---------------------------------------------- Victory sound/ background music ----------------------------//
 var victorySound = document.createElement('audio');
@@ -115,7 +155,8 @@ bgSound.preLoad = true;
 bgSound.controls = true;
 bgSound.loop = 'loop';
 
-// stackowerflow creating image array
+
+//-------------------------------------------------------------------- stackowerflow creating image array
 var createImage = function (src, nameOfClass, title) {
     var img = new Image();
     img.src = src;
@@ -136,16 +177,61 @@ images.push(createImage('assets/images/yahoo.png', 'icon', 'Icon of Yahoo'));
 images.push(createImage('assets/images/youtube.png', 'icon', 'Icon of Youtube'));
 images.push(createImage('assets/images/rss.png', 'icon', 'Icon of RSS Feed'));
 images.push(createImage('assets/images/blogger.png', 'icon', 'Icon of Blogger'));
-//------------------------------------------- start game screen------------------------------------------//
-function gameScreen() {
-    $('.game-screen').fadeIn('medium').css('display', 'flex');
-    $('.game-screen').click(function () {
-        $('.game-screen').fadeOut('slow').hide('slow');
-        $('.game-title, .more-info-container, .game-container, .game-tutorial-container').css('visibility', 'visible');
-        bgSound.play();
+
+
+//------------------------------------------- victory screen------------------------------------------//
+function victoryScreen() {
+    hideContent();
+    $('.victory-screen').fadeIn('slow').css('display', 'flex').addClass('visible');
+    $('.level-complete').text(gameType + ' difficulty');
+    scoreByGameType(gameType);
+    starRating(scoreRating);
+    $('.game-score').text(scoreRating);
+    checkForBestScore(scoreRating);
+    $('.continue-btn').click(function () {
         showContent();
-        $('#choose-difficulty').hide();
+        $('.victory-screen').fadeOut('fast');
+        $('.more-info-container, .title-container').fadeIn('medium');
+        $('.game-container').addClass('hidden');
+        $('.card-container').children('.card').remove();
+        $('.difficulty-cont-wrapper').removeClass('hidden');
+        $('.game-info-container, #new-best-score').removeClass('visible');
+        $('#back-to-menu-btn').hide();
+        $('#star-rating').empty();
+        bgSound.play();
+        clearInterval(timer);
+        minutes = 0;
+        seconds = 0;
+        $('.time-pass-minutes, #time-pass-seconds').text(minutes).text(seconds);
+        moves = 0;
+        $('#moves').text(moves);
     });
+};
+
+//----------------------------------------------------Add Game score container--------------------------------//
+function gameScoreConatainer() {
+    $('.game-info-container').addClass('visible');
+};
+
+//------------------------------------------------- Counting score----------------------------//
+function scoreByGameType(gameType) {
+    let totalSeconds = parseInt($('#time-pass-seconds').text());
+    let totalMinutes = parseInt($('.time-pass-minutes').text());
+    let totalMoves = parseInt($('#moves').text());
+    let levelCompleteTime;
+    if (gameType === 'Easy') {
+        console.log('Pasirinkai leveli easy');
+        levelCompleteTime = parseInt(60 - (totalSeconds + (60 * totalMinutes)));
+        countScore(levelCompleteTime, totalMoves);
+    } else if (gameType === 'Medium') {
+        levelCompleteTime = parseInt(90 - (totalSeconds + (60 * totalMinutes)));
+        console.log('Pasirinkai leveli medium');
+        countScore(levelCompleteTime, totalMoves);
+    } else if (gameType === 'Hard') {
+        console.log('Pasirinkai leveli hard');
+        levelCompleteTime = parseInt(120 - (totalSeconds + (60 * totalMinutes)));
+        countScore(levelCompleteTime, totalMoves);
+    }
 };
 
 var bestScore = [0, 0, 0];
@@ -170,89 +256,6 @@ function checkForBestScore(scoreRating) {
     }
 };
 
-//------------------------------------------- victory screen------------------------------------------//
-function victoryScreen() {
-    hideContent();
-    $('.victory-screen, .victory-overlay-screen').fadeIn('slow').css('display', 'flex').addClass('visible');
-    $('.level-complete').text(gameType + ' difficulty');
-    scoreByGameType(gameType);
-    starRating(scoreRating);
-    $('.game-score').text(scoreRating);
-    checkForBestScore(scoreRating);
-    $('.continue-btn').click(function () {
-        showContent();
-        $('.victory-screen').fadeOut('fast');
-        $('.card-container').children('.card').remove();
-        $('.card-container').first().children('div').removeClass('hidden');
-        $('.game-info-container, #new-best-score').removeClass('visible');
-        $('#choose-difficulty').hide();
-        $('#star-rating').empty();
-        bgSound.play();
-        clearInterval(timer);
-        minutes = 0;
-        seconds = 0;
-        $('.time-pass-minutes, #time-pass-seconds').text(minutes).text(seconds);
-        moves = 0;
-        $('#moves').text(moves);
-    });
-};
-
-//------------------------------------------------- choose how to count score depending on gameType----------------------------//
-function scoreByGameType(gameType) {
-    let totalSeconds = parseInt($('#time-pass-seconds').text());
-    let totalMinutes = parseInt($('.time-pass-minutes').text());
-    let totalMoves = parseInt($('#moves').text());
-    let levelCompleteTime;
-    if (gameType === 'Easy') {
-        console.log('Pasirinkai leveli easy');
-        levelCompleteTime = parseInt(60 - (totalSeconds + (60 * totalMinutes)));
-        countScore(levelCompleteTime, totalMoves);
-    } else if (gameType === 'Medium') {
-        levelCompleteTime = parseInt(90 - (totalSeconds + (60 * totalMinutes)));
-        console.log('Pasirinkai leveli medium');
-        countScore(levelCompleteTime, totalMoves);
-    } else if (gameType === 'Hard') {
-        console.log('Pasirinkai leveli hard');
-        levelCompleteTime = parseInt(120 - (totalSeconds + (60 * totalMinutes)));
-        countScore(levelCompleteTime, totalMoves);
-    }
-};
-
-//-------------------------------------------------------------Star rating function---------------------------------------//
-
-function starRating(scoreRating) {
-    switch (true) {
-        case scoreRating >= 400:
-            giveStars(5);
-            break;
-        case scoreRating >= 300 && scoreRating < 400:
-            giveStars(4);
-            break;
-        case scoreRating >= 200 && scoreRating < 300:
-            giveStars(3);
-            break;
-        case scoreRating >= 100 && scoreRating < 200:
-            giveStars(2);
-            break;
-        case scoreRating >= 50 && scoreRating < 100:
-            giveStars(1);
-            break;
-        case scoreRating < 50:
-            break;
-        default:
-            console.log("error in score!");
-    }
-};
-//-------------------------------------------- Add stars one by one----------------------------------//
-function giveStars(starNumber) {
-    for (let i = 0; i < starNumber; i++) {
-        setTimeout(function () {
-            $('#star-rating').append('<i class="fas fa-star"></i>');
-        }, i * 500);
-    };
-};
-
-//----------------------------------------------count two scores for passed time and moves on easy level--------------------//
 function countScore(levelCompleteTime, totalMoves) {
     console.log(levelCompleteTime, totalMoves);
     switch (true) {
@@ -352,9 +355,7 @@ function countScore(levelCompleteTime, totalMoves) {
     countFinalScore(partOfScoreOne, partOfScoreTwo);
 };
 
-//----------------------------------count final score-------------------------------------------------//
 var scoreRating;
-
 function countFinalScore(partOfScoreOne, partOfScoreTwo) {
     if (partOfScoreOne >= 0 && partOfScoreTwo >= 0) {
         scoreRating = partOfScoreOne + partOfScoreTwo;
@@ -364,15 +365,45 @@ function countFinalScore(partOfScoreOne, partOfScoreTwo) {
     }
 };
 
-//----------------------------------------------------Add Game score container--------------------------------//
-function gameScoreConatainer() {
-    $('.game-info-container').addClass('visible');
+
+//-------------------------------------------------------------Star rating function---------------------------------------//
+
+function starRating(scoreRating) {
+    switch (true) {
+        case scoreRating >= 450:
+            giveStars(5);
+            break;
+        case scoreRating >= 350 && scoreRating < 450:
+            giveStars(4);
+            break;
+        case scoreRating >= 250 && scoreRating < 350:
+            giveStars(3);
+            break;
+        case scoreRating >= 100 && scoreRating < 250:
+            giveStars(2);
+            break;
+        case scoreRating >= 50 && scoreRating < 100:
+            giveStars(1);
+            break;
+        case scoreRating < 50:
+            break;
+        default:
+            console.log("error in score!");
+    }
+};
+//-------------------------------------------- Add stars one by one----------------------------------//
+function giveStars(starNumber) {
+    for (let i = 0; i < starNumber; i++) {
+        setTimeout(function () {
+            $('#star-rating').append('<i class="fas fa-star"></i>');
+        }, i * 500);
+    };
 };
 
 //------------------------------------------------ Add card container-----------------------------------//
 function addCardContainer() {
     $('.card-container').children('.card').remove();
-    $('.card-container').find('#loader').addClass('hidden');
+    $('.difficulty-cont-wrapper').addClass('hidden');
 };
 
 //---------------------------------------------Create cards----------------------------------------------//
@@ -395,7 +426,6 @@ function addImagesToCards() {
 var timer;
 var seconds = 0;
 var minutes = 0;
-
 function startTimer() {
     timer = setInterval(function () {
         if (seconds < 59) {
@@ -459,7 +489,6 @@ function flipCards() {
                 moves++;
             };
             $('#moves').text(moves);
-            // add selected class
             $(this).addClass('selected flip');
             //----- check if the cards match
             if ($('.selected').length === 2) {

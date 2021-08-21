@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
-
 * {
     padding: 0;
     margin: 0;
@@ -11,11 +10,7 @@
 body {
     background: radial-gradient(#B0EEEC, #99B8E6);
     min-height: 100vh;
-}
-
-h2 {
     text-align: center;
-    padding: 15px;
 }
 
 button {
@@ -24,25 +19,22 @@ button {
 }
 
 /*-----------------------------------------------Game container---------------------------*/
-
 .game-container {
     visibility: hidden;
     display: flex;
     flex-direction: column;
-    height: 50vh;
+    height: 100vh;
     justify-content: center;
 }
 
-/*------------------------------------------More-information/icon ----------------*/
-
+/*------------------------------------------Mute on/off info and score board btn container ----------------*/
 .more-info-container {
     visibility: hidden;
     display: flex;
     position: fixed;
-    top: 50px;
-    right: 10px;
+    top: 55px;
+    right: 25px;
     z-index: 5;
-
 }
 
 #mute-btn,
@@ -52,7 +44,7 @@ button {
     font-size: 15px;
     color: #fff;
     border-radius: 10px;
-    border: 1px solid #fff;
+    border: 2px solid #fff;
     width: 45px;
     height: 45px;
     margin: 0 5px;
@@ -66,50 +58,94 @@ button {
 #score-board-btn:focus,
 .continue-btn:hover,
 .continue-btn:focus,
+.prev:hover,
+.next:hover,
+.prev:focus,
+.next:focus,
+.close-scoare-board-btn:hover,
+.close-scoare-board-btn:focus,
 .close-guide-btn:hover,
 .close-guide-btn:focus,
-#choose-difficulty:hover,
-#choose-difficulty:focus {
+#back-to-menu-btn:hover,
+#back-to-menu-btn:focus,
+.difficulty-btn:hover,
+.difficulty-btn:focus {
     background-color: #eeb449;
 }
+
+.close-scoare-board-btn {
+    width: 45px;
+    border-top-right-radius: 11px 6px;
+    top: -3px;
+    right: -3px;
+}
+
+.prev,
+.next,
+.close-guide-btn,
+.close-scoare-board-btn {
+    padding: 3px;
+    position: fixed;
+    background-color: #99B8E6;
+    font-size: 20px;
+    color: #000;
+    border: 2px solid #fff;
+    font-weight: bold;
+    z-index: 11;
+}
+
+.next {
+    bottom: -3px;
+    right: -2px;
+    width: 30%;
+    border-bottom-right-radius: 7px 7px;
+}
+
+.prev {
+    bottom: -3px;
+    left: -2px;
+    width: 30%;
+    border-bottom-left-radius: 7px 7px;
+}
+
+.close-guide-btn {
+    bottom: -3px;
+    left: 50%;
+    width: 30%;
+    transform: translate(-50%, 0);
+}
+
 
 .game-tutorial-container {
     visibility: hidden;
     display: none;
     position: fixed;
-    max-width: 1200px;
+    max-width: 720px;
     width: 80vw;
-    max-height: 550px;
-    height: auto;
+    height: 570px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     align-items: center;
     z-index: 10;
-    background-color: #ffe07c;
+    background-color: #ffb317;
     color: rgb(0, 0, 0);
     border: 3px solid #fff;
     border-radius: 10px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.game-tutorial-container>h2 {
-    font-size: 38px;
-    text-align: center;
-    padding-top: 20px;
-}
-
 .step-container {
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    text-align: center;
 }
 
 .step-info-container {
-    width: 33%;
-    padding: 30px 10px;
+    display: none;
+}
 
+.step-info-container.active {
+    display: block;
 }
 
 .step-info-container h3 {
@@ -123,17 +159,13 @@ button {
     padding: 10px 0;
 }
 
-
-.guide-img {
+    .guide-img-one,
+    .guide-img-two,
+    .guide-img-three {
     width: 100%;
     height: auto;
-    border: 3px solid #fff;
     border-radius: 10px;
 }
-
-/* .game-tutorial-container.visible {
-    display: block;
-} */
 
 /* ------------------------------ Game title --------------------------*/
 .title-container {
@@ -143,73 +175,62 @@ button {
 .game-title {
     visibility: hidden;
     color: #1F1E1E;
-    font-size: 5em;
-    text-align: center;
+    font-size: 85px;
 }
 
 /*------------------------------------------Score board---------------------------------*/
-
 .score-board {
     display: none;
     position: fixed;
     flex-direction: column;
     justify-content: center;
-    padding: 5px;
-    max-width: 250px;
-    width: 20vw;
-    min-height: 350px;
-    height: auto;
+    padding: 15px;
+    max-width: 450px;
+    width: 80vw;
+    min-height: 375px;
     top: 20%;
-    right: 2%;
-    z-index: 5;
+    z-index: 9;
     background-color: #ffe07c;
     color: rgb(0, 0, 0);
     border: 3px solid #fff;
     border-radius: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.best-score-on-board,
+span[class*='best-score-'] {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.score-stars i {
+    color: #f86300;
+    font-size: 30px;
+}
+
 .score-board h2 {
-    font-size: 18px;
-}
-
-.best-score-container {
-    text-align: center;
-}
-
-.best-score-container>span {
-    padding: 2px 0;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.best-score-on-board {
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 35px;
 }
 
 .score-stars {
     display: block;
-    text-align: center;
     padding: 5% 0;
 }
 
-.score-stars>i {
-    font-size: 20px;
-    color: #f86300;
-}
-
-/*--------------------------------------Game infor container ----------------------*/
+/*--------------------------------------Game time and moves display container ----------------------*/
 .game-info-container {
     color: #333131;
-    font-size: 2em;
+    font-size: 30px;
     display: none;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .game-info-container p {
     margin: 0 40px 0;
+    font-weight: bolder;
 }
 
 .game-info-container p>i {
@@ -229,27 +250,21 @@ button {
     perspective: 500px;
 }
 
-.card-container h2>i {
-    color: #fff;
-}
-
-.laoder-container {
+.difficulty-cont-wrapper {
+    visibility: hidden;
     margin: 25px auto;
 }
 
-.laoder-container.hidden {
-    display: none;
+.difficulty-cont-wrapper h2 {
+    margin-bottom: 20px;
 }
 
-.laoder-container img {
-    display: block;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
+.difficulty-cont-wrapper h2 > i {
+    color: #fff;
 }
 
 .difficulty-container {
-    margin: 5px auto;
+    margin: auto 5px;
     display: flex;
     justify-content: center;
 }
@@ -259,18 +274,12 @@ button {
     font-size: 25px;
     color: #fff;
     border-radius: 10px;
-    border: 1px solid #fff;
+    border: 2px solid #fff;
     width: 150px;
     height: 150px;
     margin: 0 5px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-.difficulty-btn:hover,
-.difficulty-btn:focus {
-    background-color: #eeb449;
-}
-
 /*-----------------------------------------------Pop up screens ------------------------------*/
 
 .game-screen {
@@ -290,14 +299,26 @@ button {
     font-size: 5em;
 }
 
+.overlay-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #cac1b3fa;
+    z-index: 6;
+    width: 100vw;
+    height: 100vh;
+}
+
+.overlay-screen.show {
+    display: flex;
+}
+
 .victory-screen {
     display: none;
     position: fixed;
-    width: 40vw;
-    max-width: 600px;
-    height: 32vh;
-    min-height: 300px;
-    max-height: 300px;
+    width: 650px;
+    height: 350px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -316,23 +337,24 @@ button {
 }
 
 .victory-screen h2 {
-    font-size: 50px;
-    padding: 25px 0 10px 0;
+    font-size: 55px;
+    padding: 15px 0;
 }
 
 .victory-screen p,
 .level-complete {
-    font-size: 20px;
-    margin: 5px 0;
+    font-size: 30px;
+    margin: 15px 0;
+    font-weight: bold;
 }
 
 #new-best-score {
     display: none;
     position: fixed;
-    top: 10px;
+    top: 30px;
     left: 0px;
     color: rgb(255, 255, 255);
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bolder;
     text-align: center;
     transform: rotate(333deg);
@@ -350,10 +372,9 @@ button {
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-
 #star-rating {
-    font-size: 40px;
-    margin: 10px 0;
+    font-size: 45px;
+    margin: 15px 0;
 }
 
 #star-rating>i {
@@ -361,23 +382,7 @@ button {
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-/* .victory-overlay-screen {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 6;
-} */
-
-/* .victory-overlay-screen.visible {
-    display: flex;
-    animation: screen-grow 500ms forwards;
-} */
-
-.continue-btn,
-.close-guide-btn {
+.continue-btn {
     padding: 10px;
     position: fixed;
     bottom: -25px;
@@ -387,14 +392,12 @@ button {
     color: #fff;
     border-radius: 10px;
     border: 2px solid #fff;
+    font-weight: bold;
 }
 
-/* .game-screen.visible {
-    display: flex;
-    flex-direction: column;
-    animation: screen-grow 500ms forwards;
-    cursor: pointer;
-} */
+.hidden {
+    display: none;
+}
 
 .click-to-start {
     animation: pulsing 4s infinite;
@@ -413,19 +416,6 @@ button {
         font-size: 25px;
     }
 }
-
-/* @keyframes screen-grow {
-    from {
-        background-color: rgba(0, 0, 0, 0);
-        font-size: 0;
-    }
-
-    to {
-        background-color: rgba(93, 100, 243, 0.95);
-        font-size: 5em;
-    }
-} */
-
 /*------------------------------------Game option container / change difficulty button -----------------------*/
 .game-options {
     color: #333131;
@@ -435,12 +425,13 @@ button {
     margin-top: 15px;
 }
 
-#choose-difficulty {
+#back-to-menu-btn {
     background-color: #99B8E6;
-    font-size: 15px;
+    font-size: 18px;
+    font-weight: bolder;
     color: #fff;
     border-radius: 10px;
-    border: 1px solid #fff;
+    border: 2px solid #fff;
     height: 45px;
     margin: 0;
 }
@@ -465,10 +456,6 @@ button {
 .card.flip {
     transform: rotateY(180deg);
 }
-
-/* .card.card-front {
-    transform: rotateY(0);
-} */
 
 .card-back {
     width: 100%;
@@ -506,8 +493,8 @@ button {
 }
 
 .icon {
-    width: 135px;
-    height: 145px;
+    width: 100%;
+    height: auto;
 }
 
 .select-disable {
@@ -520,14 +507,15 @@ button {
 
 
 /*-------------------------------------------------------------------------Media queries-----------------------------------------------------------------------------*/
-@media screen and (max-width: 375px) and (orientation: portrait) {
+@media screen and (max-width: 688px) and (orientation: portrait) {
 
     .game-screen h2 {
         font-size: 38px;
     }
 
     .score-board h2 {
-        padding: 5px 0 10px;
+        padding: 22px 0 10px;
+        font-size: 25px;
     }
 
     h2 {
@@ -544,29 +532,20 @@ button {
     }
 
     .more-info-container {
-        flex-direction: row;
         position: static;
         justify-content: center;
-        padding: 10px 0 0;
-    }
-
-    .game-container {
-        height: calc(100vh - 150px);
-        display: flex;
-        flex-direction: column;
-        margin-top: 20px;
-        justify-content: flex-start;
+        padding: 10px 0 15px;
     }
 
     .card-container {
         grid-template-columns: repeat(4, auto);
     }
 
-    .laoder-container {
-        margin: 10px auto;
+    .difficulty-cont-wrapper {
+        margin: 0 auto;
     }
 
-    #choose-difficulty {
+    #back-to-menu-btn {
         height: 30px;
     }
 
@@ -583,14 +562,13 @@ button {
     }
 
     .game-info-container {
-        font-size: 1em;
-        justify-content: center;
         margin-bottom: 5px;
     }
 
     .game-info-container p {
         padding: 0 10px 0;
         margin: 0;
+        font-size: 16px;
     }
 
     .card {
@@ -600,42 +578,10 @@ button {
         box-shadow: 2px 5px 5px rgb(78 78 78);
     }
 
-    .icon {
-        width: 60px;
-        height: 60px;
-    }
-
     .game-tutorial-container {
         position: fixed;
         min-width: 90vw;
-        height: 95vh;
-        max-height: 100vh;
-        flex-wrap: wrap;
-        overflow: auto;
-        border: 2px solid black;
-    }
-
-    .step-container {
-        flex-direction: column;
-    }
-
-    .step-info-container {
-        width: 100%;
-        padding: 0;
-    }
-
-    .guide-img {
-        border: none;
-        border-radius: 0;
-    }
-
-    .close-guide-btn {
-        position: sticky;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        color: #000;
-        font-size: 15px;
+        height: 80vh;
     }
 
     .score-board {
@@ -648,6 +594,16 @@ button {
         transform: translate(-50%, 0);
     }
 
+    .best-score-on-board,
+    span[class*='best-score-'] {
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .score-stars i {
+        font-size: 18px;
+    }
+
     #new-best-score {
         font-size: 10px;
         top: 35px;
@@ -655,15 +611,16 @@ button {
 
     .victory-screen {
         width: 90vh;
-        max-width: 300px;
-        min-height: 255px;
-        height: auto;
+        max-width: 330px;
+        min-height: 230px;
     }
 
-    .victory-screen p, .level-complete {
-        font-size: 20px;
+    .victory-screen p,
+    .level-complete {
+        font-size: 16px;
         margin: 10px 0;
         text-align: center;
+        font-weight: bold;
     }
 
     .victory-screen h2 {
@@ -671,30 +628,35 @@ button {
         padding: 10px 0px;
     }
 
+    .continue-btn {
+        font-size: 16px;
+    }
+
+
     #star-rating {
-        font-size: 29px;
+        font-size: 25px;
         margin: 5px 0;
     }
 }
 
+@media screen and (max-width: 823px) and (orientation: landscape) {
 
-@media screen and (max-width: 688px) and (orientation: landscape) {
-    
     .game-screen h2 {
-        font-size: 40px;
+        font-size: 38px;
     }
 
     .score-board h2 {
-        padding: 5px 0 10px;
+        padding: 10px 0;
+        font-size: 23px;
     }
-    
+
     h2 {
-        font-size: 20px;
+        font-size: 16px;
         padding: 0 0 10px;
     }
 
     .title-container {
-        padding: 10px 0;
+        padding: 10px 0 5px;
     }
 
     .game-title {
@@ -702,33 +664,26 @@ button {
     }
 
     .more-info-container {
-        flex-direction: row;
         position: static;
         justify-content: center;
-    }
-
-    .game-container {
-        height: calc(100vh - 150px);
-        display: flex;
-        flex-direction: column;
-        margin-top: 10px;
-        justify-content: flex-start;
+        padding: 10px 0 15px;
     }
 
     .card-container {
         grid-template-columns: repeat(8, auto);
     }
 
-    .laoder-container {
-        margin: 5px 0;
+    .difficulty-cont-wrapper {
+        margin: 0 auto;
     }
 
-    #choose-difficulty {
+    #back-to-menu-btn {
         height: 30px;
     }
 
     .difficulty-container {
-        align-items: center;
+        flex-direction: column;
+        flex-direction: row;
     }
 
     .difficulty-btn {
@@ -739,14 +694,13 @@ button {
     }
 
     .game-info-container {
-        font-size: 1em;
-        justify-content: center;
         margin-bottom: 5px;
     }
 
     .game-info-container p {
         padding: 0 10px 0;
         margin: 0;
+        font-size: 16px;
     }
 
     .card {
@@ -756,53 +710,41 @@ button {
         box-shadow: 2px 5px 5px rgb(78 78 78);
     }
 
-    .icon {
-        width: 60px;
-        height: 60px;
-    }
-
     .game-tutorial-container {
         position: fixed;
-        width: 50vw;
-        height: 95vh;
-        max-height: 100vh;
-        flex-wrap: wrap;
-        overflow: auto;
-        border: 2px solid black;
+        min-width: 90vw;
+        height: 90vh;
     }
 
-    .step-container {
-        flex-direction: column;
+    .guide-img-one {
+        width: 365px;
     }
 
-    .step-info-container {
-        width: 100%;
-        padding: 0;
+    .guide-img-two {
+        width: 165px;
     }
 
-    .guide-img {
-        border: none;
-        border-radius: 0;
-    }
-
-    .close-guide-btn {
-        position: sticky;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        color: #000;
-        font-size: 15px;
+    .guide-img-three {
+        width: 300px;
     }
 
     .score-board {
         padding: 5px;
         width: 80vw;
-        max-width: 225px;
-        min-height: 313px;
-        height: auto;
-        top: 25px;
-        right: 8px;
-        transform: translate(0, 0);
+        min-height: 180px;
+        max-width: 500px;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .best-score-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .best-score-container div {
+        padding: 0 20px;
     }
 
     #new-best-score {
@@ -810,17 +752,29 @@ button {
         top: 35px;
     }
 
-    .victory-screen {
-        width: 90vh;
-        max-width: 350px;
-        min-height: 255px;
-        height: auto;
+    .best-score-on-board,
+    span[class*='best-score-'] {
+        font-size: 15px;
+        font-weight: bold;
     }
 
-    .victory-screen p, .level-complete {
-        font-size: 20px;
+    .score-stars i {
+        font-size: 18px;
+    }
+
+
+    .victory-screen {
+        width: 90vh;
+        max-width: 330px;
+        min-height: 230px;
+    }
+
+    .victory-screen p,
+    .level-complete {
+        font-size: 16px;
         margin: 10px 0;
         text-align: center;
+        font-weight: bold;
     }
 
     .victory-screen h2 {
@@ -828,71 +782,56 @@ button {
         padding: 10px 0px;
     }
 
-    #star-rating {
-        font-size: 29px;
-        margin: 5px 0;
+    .continue-btn {
+        font-size: 16px;
     }
 
+
+    #star-rating {
+        font-size: 25px;
+        margin: 5px 0;
+    }
 }
 
-@media screen and (min-width: 375px) and (max-width: 688px) and (orientation: portrait) {
-    .game-container {
-        height: 100vh;
+@media screen and (min-width: 689px) and (max-width: 1200px) and (orientation: portrait) {
+
+    .game-screen h2 {
+        font-size: 70px;
+    }
+
+    .score-board h2 {
+        font-size: 25px;
     }
 
     .card-container {
         width: 100%;
-        grid-template-columns: repeat(4, auto);
-    }
-
-    h2 {
-        font-size: 16px;
-        padding: 10px;
-    }
-
-    .game-screen h2 {
-        font-size: 40px;
-    }
-
-    .victory-screen.visible span,
-    .game-screen span {
-        font-size: 0.5em;
+        grid-template-columns: repeat(6, auto);
     }
 
     .title-container {
-        padding: 10px 0;
-        position: absolute;
-        transform: translate(-50%, 0);
-        width: 100%;
-        left: 50%;
-    }
-
-    .difficulty-btn {
-        font-size: 20px;
-        margin: 5px 0;
-        width: 140px;
-        height: 140px;
+        padding: 15px 0 5px;
     }
 
     .game-title {
-        font-size: 2em;
+        font-size: 50px;
     }
 
     .more-info-container {
-        top: 10px;
-        right: 0;
-        flex-direction: column;
-    }
-
-    .game-info-container {
-        font-size: 1em;
+        position: static;
         justify-content: center;
-        margin-bottom: 5px;
+        padding: 10px 0 15px;
     }
 
-    .game-info-container p {
-        padding: 0 10px 0;
-        margin: 0;
+    #mute-btn,
+    #info-btn,
+    #score-board-btn {
+        font-size: 20px;
+        width: 55px;
+        height: 55px;
+    }
+
+    .difficulty-cont-wrapper {
+        margin: 10px auto;
     }
 
     .difficulty-container {
@@ -900,102 +839,201 @@ button {
         align-items: center;
     }
 
-    .card {
-        width: 70px;
-        height: 90px;
-        margin: 2px;
-    }
-
-    .card-back:hover {
-        width: 75px;
-        height: 95px;
-    }
-
-    .icon {
-        width: 60px;
-        height: 60px;
-    }
-}
-
-@media screen and (min-width: 689px) and (max-width: 1200px) and (orientation: landscape) {
-    .card-container {
-        width: 100%;
-        grid-template-columns: repeat(6, auto);
-    }
-
-    .game-title {
-        font-size: 2em;
-    }
-
-    .more-info-container {
-        top: 5px;
-        right: 15px;
+    .difficulty-btn {
+        font-size: 20px;
+        margin: 5px 0;
     }
 
     .game-info-container {
-        font-size: 1em;
-        justify-content: center;
+        margin: 10px;
+        ;
     }
 
     .game-info-container p {
         padding: 0 10px 0;
+        font-size: 25px;
     }
 
     .card {
         width: 100px;
         height: 150px;
         margin: 3px;
+        box-shadow: 2px 5px 5px rgb(78 78 78);
     }
 
-    .card-back:hover {
-        width: 105px;
-        height: 155px;
+    .score-board {
+        padding: 5px;
+        width: 80vw;
+        min-height: 313px;
+        height: auto;
+        left: 50%;
+        transform: translate(-50%, 0);
+        max-width: 330px;
     }
 
-    .icon {
-        width: 60px;
-        height: 60px;
+    .best-score-on-board,
+    span[class*='best-score-'] {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .score-stars i {
+        font-size: 25px;
+    }
+
+    #new-best-score {
+        font-size: 20px;
+        top: 20px;
+    }
+
+    .victory-screen {
+        width: 90vh;
+        max-width: 500px;
+        min-height: 320px;
+    }
+
+    .victory-screen p,
+    .level-complete {
+        font-size: 25px;
+        margin: 10px 0;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .victory-screen h2 {
+        font-size: 45px;
+        padding: 10px 0px;
+    }
+
+    .continue-btn {
+        font-size: 20px;
+    }
+
+    #star-rating {
+        font-size: 35px;
+        margin: 15px 0;
     }
 }
 
-@media screen and (min-width: 689px) and (max-width: 1200px) and (orientation: portrait) {
+@media screen and (min-width: 824px) and (max-width: 1200px) and (orientation: landscape) {
+    .game-screen h2 {
+        font-size: 70px;
+    }
 
-    .card-container {
-        width: 100%;
-        grid-template-columns: repeat(6, auto);
+    .score-board h2 {
+        font-size: 25px;
+    }
+
+    .title-container {
+        padding: 15px 0 5px;
     }
 
     .game-title {
-        font-size: 2em;
+        font-size: 50px;
     }
 
     .more-info-container {
-        top: 5px;
-        right: 15px;
+        position: static;
+        justify-content: center;
+        padding: 15px 0;
+    }
+
+    #mute-btn,
+    #info-btn,
+    #score-board-btn {
+        font-size: 20px;
+        width: 55px;
+        height: 55px;
+    }
+
+    .card-container {
+        grid-template-columns: repeat(8, auto);
+    }
+
+    .difficulty-cont-wrapper {
+        margin: 30px auto;
+    }
+
+    .difficulty-cont-wrapper h2 {
+        padding-bottom: 25px;
+    }
+
+
+    .difficulty-container {
+        flex-direction: column;
+        flex-direction: row;
+    }
+
+    .difficulty-btn {
+        font-size: 20px;
+        margin: 0 5px;
     }
 
     .game-info-container {
-        font-size: 1em;
-        justify-content: center;
+        margin: 10px;
     }
 
     .game-info-container p {
         padding: 0 10px 0;
+        font-size: 25px;
     }
 
     .card {
         width: 100px;
         height: 150px;
         margin: 3px;
+        box-shadow: 2px 5px 5px rgb(78 78 78);
     }
 
-    .card-back:hover {
-        width: 105px;
-        height: 155px;
+    .score-board {
+        min-height: 313px;
+        max-width: 330px;
     }
 
-    .icon {
-        width: 60px;
-        height: 60px;
+    .best-score-on-board,
+    span[class*='best-score-'] {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .score-stars i {
+        font-size: 25px;
+    }
+
+    .best-score-container div {
+        padding: 0 20px;
+    }
+
+    #new-best-score {
+        font-size: 20px;
+        top: 20px;
+    }
+
+    .victory-screen {
+        width: 90vh;
+        max-width: 500px;
+        min-height: 320px;
+    }
+
+    .victory-screen p,
+    .level-complete {
+        font-size: 25px;
+        margin: 10px 0;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .victory-screen h2 {
+        font-size: 45px;
+        padding: 10px 0px;
+    }
+
+    .continue-btn {
+        font-size: 20px;
+    }
+
+    #star-rating {
+        font-size: 35px;
+        margin: 15px 0;
     }
 }

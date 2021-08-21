@@ -30,8 +30,23 @@
         <button id="info-btn" aria-label="more information button"><i class="fas fa-info"></i></button>
         <button id="score-board-btn" aria-label="button to open score board"><i class="fas fa-trophy"></i></button>
     </div>
+    <div class='difficulty-cont-wrapper'>
+        <h2>
+            <i class="fas fa-angle-double-down"></i> Please Choose Difficulty
+            <i class="fas fa-angle-double-down"></i>
+        </h2>
+        <!--Container for player to choose difficulty of game -->
+        <div class="difficulty-container">
+            <button id="easy" class='difficulty-btn'><i class="fas fa-star"></i><i class="far fa-star"></i><i
+                    class="far fa-star"></i><br>Easy</button>
+            <button id="medium" class='difficulty-btn'><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                    class="far fa-star"></i><br>Medium</button>
+            <button id="hard" class='difficulty-btn'><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                    class="fas fa-star"></i><br>Hard</button>
+        </div>
+    </div>
     <!--Game container -->
-    <section class="game-container select-disable">
+    <div class="game-container select-disable">
         <div class="game-info-container">
             <p><i class="fas fa-clock"></i> Time: <span class="time-pass-minutes"> 0 </span> min.
                 <span id="time-pass-seconds">0</span> sec
@@ -40,27 +55,12 @@
         </div>
         <!--Container keeps all the cards-->
         <div class="card-container">
-            <div id='loader' class='laoder-container'>
-                <h2>
-                    <i class="fas fa-angle-double-down"></i> Please Choose Difficulty
-                    <i class="fas fa-angle-double-down"></i>
-                </h2>
-                <!--Container for player to choose difficulty of game -->
-                <div class="difficulty-container">
-                    <button id="easy" class='difficulty-btn'><i class="fas fa-star"></i><i class="far fa-star"></i><i
-                            class="far fa-star"></i></br>Easy</button>
-                    <button id="medium" class='difficulty-btn'><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="far fa-star"></i></br>Medium</button>
-                    <button id="hard" class='difficulty-btn'><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i></br>Hard</button>
-                </div>
-                <!-- <img src="assets/images/loader.svg" width="150px" height="150px" alt="loading" /> -->
-            </div>
         </div>
         <div class="game-options">
-            <button id="choose-difficulty"><i class="fas fa-angle-double-left"></i> Go Back</button>
+            <button id="back-to-menu-btn"><i class="fas fa-angle-double-left"></i> Menu <i
+                    class="fas fa-angle-double-right"></i></button>
         </div>
-    </section>
+    </div>
     <div class="victory-screen">
         <h2>You Win!!!</h2>
         <p id="star-rating"></p>
@@ -69,61 +69,70 @@
         <p>Your Best Score on <span class='level-complete'></span>: <span class="best-score"></span></p>
         <button class='continue-btn'>Continue <i class="fas fa-angle-double-right"></i></button>
     </div>
+    <div class="overlay-screen"></div>
     <div class="score-board">
-        <h2> Your Best Scores</i></h2>
+        <h2> Your Best Scores</h2>
         <div class="best-score-container">
-            <p class="best-score-on-board">
-                <span class="score-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i>
-                    <i class="far fa-star"></i>
-                </span>
-                Easy Difficulty 
-            </p>
-            <span class="best-score-easy"></span>
-            <p class="best-score-on-board">
-                <span class="score-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i>
-                </span>
-                Medium Difficulty
-            </p>
-            <span class="best-score-medium"></span>
-            <p class="best-score-on-board">
-                <span class="score-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </span>
-                Hard Difficulty
-            </p>
-            <span class="best-score-hard"></span>
+            <div>
+                <p class="best-score-on-board">
+                    <span class="score-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </span>
+                    Easy Difficulty
+                </p>
+                <span class="best-score-easy"></span>
+            </div>
+            <div>
+                <p class="best-score-on-board">
+                    <span class="score-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </span>
+                    Medium Difficulty
+                </p>
+                <span class="best-score-medium"></span>
+            </div>
+            <div>
+                <p class="best-score-on-board">
+                    <span class="score-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </span>
+                    Hard Difficulty
+                </p>
+                <span class="best-score-hard"></span>
+            </div>
         </div>
+        <button class='close-scoare-board-btn' aria-label="close button"><i class="fas fa-times"></i></button>
     </div>
-    <div class="game-tutorial-container">
-        <h2>Game Guide</h2>
+    <div class="game-tutorial-container select-disable">
+        <button class="prev" aria-label="previous"><i class="fas fa-angle-double-left"></i></button>
         <div class="step-container">
-            <div class="step-info-container">
+            <div class="step-info-container active">
                 <h3>Step 1</h3>
-                <p>Choose difficulty level</p>
-                <img class='guide-img' src="assets/images/game_Guide/diff_menu.png" alt="difficulty menu">
+                <p>You have to pick a difficulty for your game match</p>
+                <img class='guide-img-one' src="assets/images/game_Guide/diff_menu.png" alt="difficulty menu">
             </div>
             <div class="step-info-container">
                 <h3>Step 2</h3>
                 <p>Match all cards</p>
-                <img class='guide-img' src="assets/images/game_Guide/match_cards.png" alt="match cards picture">
+                <img class='guide-img-two' src="assets/images/game_Guide/match_cards.png" alt="match cards picture">
             </div>
             <div class="step-info-container">
                 <h3>Step 3</h3>
-                <p>Get highest score</p>
-                <img class='guide-img' src="assets/images/game_Guide/victory_screen.png" alt="game result window">
+                <p>Get highest score and enjoy your victory!!!</p>
+                <img class='guide-img-three' src="assets/images/game_Guide/victory_screen.png" alt="game result window">
             </div>
         </div>
+        <button class="next" aria-label="next"><i class="fas fa-angle-double-right"></i></button>
         <button class='close-guide-btn' aria-label="close button"><i class="fas fa-times"></i></button>
     </div>
 
-    <script type="text/javascript" src="assets/js/script.js" async></script>
+    <script src="assets/js/script.js" async></script>
 </body>
 
 </html>
